@@ -7,7 +7,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('passcode/', include('passcode.urls')),
     path('common/', include('common.urls')),
-    path('', base_views.index, name='index'),  # '/' 에 해당되는 path
+    # path('', base_views.index, name='index'),  # '/' 에 해당되는 path
+    path('', base_views.main, name='main'),  # '/' 에 해당되는 path
 ]
 
 

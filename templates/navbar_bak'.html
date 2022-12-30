@@ -1,0 +1,87 @@
+<!-- 네비게이션바 -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'passcode:index' %}">PASSCODE | </a>
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    About PASSCODE
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">Compnay info</a></li>
+                    <li><a class="dropdown-item" href="#">Service info</a></li>
+                    <li><a class="dropdown-item" href="#">Partners info</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Digital Assets
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">Cryptocurrency</a></li>
+                    <li><a class="dropdown-item" href="#">NFT</a></li>
+                    <li><a class="dropdown-item" href="#">Intellectual property rights</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Announce
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">Notice</a></li>
+                    <li><a class="dropdown-item" href="#">News</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <button type="button" class="btn btn-light text-muted">Contact Us</button>
+{#          <a class="nav-link" href="#">Link</a>#}
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+{#            <ul class="navbar-nav me-auto mb-2 mb-lg-0">#}
+{#                <li class="nav-item">#}
+{#                    {% if user.is_authenticated %}#}
+{#                    <a class="nav-link" href="{% url 'common:logout' %}">{{ user.username }} (로그아웃)</a>#}
+{#                    {% else %}#}
+{#                    <a class="nav-link" href="{% url 'common:login' %}">로그인</a>#}
+{#                    {% endif %}#}
+{#                </li>#}
+{#                <li>#}
+{#                    {% if not user.is_authenticated %}#}
+{#                    <a class="nav-link" href="{% url 'common:signup' %}">회원가입</a>#}
+{#                    {% endif %}#}
+{#                </li>#}
+{#            </ul>#}
+        </div>
+    </div>
+</nav>
+
+

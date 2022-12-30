@@ -24,6 +24,11 @@ def index(request):
 
     return render(request, 'passcode/question_list.html', context)
 
+def main(request):
+
+    return render(request, 'passcode/index.html')
+
+
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     context = {'question': question}
