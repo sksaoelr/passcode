@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from passcode.views import base_views
+from passcode.views import base_views, category_veiws
 
 
 urlpatterns = [
