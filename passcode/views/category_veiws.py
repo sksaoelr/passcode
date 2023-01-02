@@ -2,6 +2,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from requests import Request, Session
+import requests
 import json
 import sys, os
 import logging
@@ -47,7 +48,7 @@ def cryptocurrency_info(request):
         }
         market_list.append(temp_data)
     context = {'market_list': market_list}
-    print(context)
+    # print(context)
     return render(request, 'passcode/cryptocurrency_info.html', context)
 
 def nft_info(request):
@@ -59,8 +60,28 @@ def notice_board(request):
     return render(request, 'passcode/notice_board.html')
 
 def news_board(request):
+    param = {
+        'token' : '$2y$10$z0PDxiNJeRYH6u32sCbkT.ZgdyVsp/VvHHjYsruMwPs8CYXfOAgSW',
+        'limit' : 5
+    }
+    url = f"https://www.cryptohub.or.kr/api/v1/news"
+    # headers = {"Authorization": "Bearer m4om9xjkcb1u0dyqkdgcqolsfdbcgu7yygfxhl6vcqwmd5imeh"}
+    response = requests.post(url, param)
+    in_data = json.loads(response.content.decode('utf-8'))
+    result = []
+    for row in in_data['data']:
+        temp_data = {
+            'id' : row['id'],
+            'title' : row['title'],
+            'sub_title' : row['sub_title'],
+            'pubdate' : row['pubdate'],
+            'updated_at' : row['updated_at'],
+            'thumbnail' : row['thumbnail']
+        }
+        result.append(temp_data)
+    context = {'news_list': result}
 
-    return render(request, 'passcode/news_board.html')
+    return render(request, 'passcode/news_board.html', context)
 
 def contact_us(request):
 

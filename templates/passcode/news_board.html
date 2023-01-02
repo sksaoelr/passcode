@@ -5,7 +5,43 @@
 <!-- Services-->
 <section class="page-section" id="company_info">
     <div class="container">
-ㅁㄴㅇㅁ
+      <div class="row">
+      <H1 class="text-center">NEWS</H1>
+      <h1></h1>
+      <h1></h1>
+      </div>
+<div class="container">
+    <div class="row no-gutters">
+    <div class="col-2"></div>
+    <div class="col-8 me-1" >
+        {% for news in news_list %}
+          <div class="card">
+            <div class="row">
+              <div class="col-4">
+                  <a href="https://www.cryptohub.or.kr/news/{{ news.id }}">
+                    <img src={{ news.thumbnail }} alt="" class="card-img img-responsive center-block" width="200" height="200"/>
+                  </a>
+              </div>
+              <div class="col-8 mr-5">
+                  <a href="https://www.cryptohub.or.kr/news/{{ news.id }}">
+                    <h5 class="card-title mt-2" style="color: black">{{ news.title }}</h5>
+
+                    <div class="card-body">
+                      <p class="card-text" style="color: black">{{ news.sub_title }}</p>
+                      <p class="card-text"style="color: black">작성일자: {{ news.pubdate }}</p>
+                    </div>
+                  </a>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+      </div>
+</div>
+
+{#                        <td data-th="Name">{{ market.title }}</td>#}
+{#                        <td data-th="Now Price(KRW)">{{ market.sub_title }}</td>#}
+{#                        <td data-th="Volume Change(24H)">{{ market.pubdate }}</td>#}
     </div>
 </section>
 <!-- Bootstrap core JS-->
