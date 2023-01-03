@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from requests import Request, Session
 from django.core.paginator import Paginator
+import random
 import requests
 import json
 import sys, os
@@ -53,8 +54,11 @@ def cryptocurrency_info(request):
     return render(request, 'passcode/cryptocurrency_info.html', context)
 
 def nft_info(request):
-
-    return render(request, 'passcode/nft_info.html')
+    london = [3.9,4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+    context = {
+        'london' : london,
+    }
+    return render(request, 'passcode/nft_info.html', context)
 
 def notice_board(request):
 

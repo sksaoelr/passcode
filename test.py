@@ -1,10 +1,19 @@
+import datetime
 import requests
+import json
 
-param = {
-    'token': '$2y$10$z0PDxiNJeRYH6u32sCbkT.ZgdyVsp/VvHHjYsruMwPs8CYXfOAgSW',
-    'limit': 1
+url = 'https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=KRW&limit=10'
+api_key = '05770f67db120460076177af39481e38fe5b46a77563fa33dce00f7c8c469e4d'
+
+headers = {
+    'API KEY ': api_key,
 }
-url = f"https://www.cryptohub.or.kr/api/v1/news"
-response = requests.post(url, param)
+response = requests.get(url, headers)
 
-print(response.text)
+in_data = json.loads(response.text)
+
+for row in in_data:
+    print(row)
+    print(type(json.loads(row)))
+    # d = datetime.date.fromtimestamp(row['Data']['time'])
+    # print(d)
