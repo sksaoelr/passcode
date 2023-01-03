@@ -2,6 +2,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from requests import Request, Session
+from django.core.paginator import Paginator
 import requests
 import json
 import sys, os
@@ -60,9 +61,10 @@ def notice_board(request):
     return render(request, 'passcode/notice_board.html')
 
 def news_board(request):
+    page = request.GET.get('page', '1')  # 페이지
     param = {
         'token' : '$2y$10$z0PDxiNJeRYH6u32sCbkT.ZgdyVsp/VvHHjYsruMwPs8CYXfOAgSW',
-        'limit' : 5
+        'limit' : 20
     }
     url = f"https://www.cryptohub.or.kr/api/v1/news"
     # headers = {"Authorization": "Bearer m4om9xjkcb1u0dyqkdgcqolsfdbcgu7yygfxhl6vcqwmd5imeh"}
@@ -79,7 +81,10 @@ def news_board(request):
             'thumbnail' : row['thumbnail']
         }
         result.append(temp_data)
-    context = {'news_list': result}
+
+    paginator = Paginator(result, 5)  # 페이지당 10개씩 보여주기
+    page_obj = paginator.get_page(page)
+    context = {'news_list': page_obj}
 
     return render(request, 'passcode/news_board.html', context)
 

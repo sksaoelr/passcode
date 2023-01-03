@@ -10,38 +10,69 @@
       <h1></h1>
       <h1></h1>
       </div>
-<div class="container">
-    <div class="row no-gutters">
-    <div class="col-2"></div>
-    <div class="col-8 me-1" >
-        {% for news in news_list %}
-          <div class="card">
-            <div class="row">
-              <div class="col-4">
-                  <a href="https://www.cryptohub.or.kr/news/{{ news.id }}">
-                    <img src={{ news.thumbnail }} alt="" class="card-img img-responsive center-block" width="200" height="200"/>
-                  </a>
+        <div class="row no-gutters">
+            <div class="col-2"></div>
+            <div class="col-8 me-1" >
+              {% for news in news_list%}
+              <div class="card">
+                <div class="row">
+                  <div class="col-4">
+                      <a href="https://www.cryptohub.or.kr/news/{{ news.id }}">
+                        <img src={{ news.thumbnail }} alt="" class="card-img img-responsive center-block" width="200" height="200"/>
+                      </a>
+                  </div>
+                  <div class="col-8 mr-5">
+                      <a href="https://www.cryptohub.or.kr/news/{{ news.id }}">
+                        <h5 class="card-title mt-2" style="color: black">{{ news.title }}</h5>
+                        <div class="card-body">
+                          <p class="card-text" style="color: black">{{ news.sub_title }}</p>
+                          <p class="card-text" style="color: black">작성일자: {{ news.pubdate }}</p>
+                        </div>
+                      </a>
+                  </div>
+                </div>
               </div>
-              <div class="col-8 mr-5">
-                  <a href="https://www.cryptohub.or.kr/news/{{ news.id }}">
-                    <h5 class="card-title mt-2" style="color: black">{{ news.title }}</h5>
-
-                    <div class="card-body">
-                      <p class="card-text" style="color: black">{{ news.sub_title }}</p>
-                      <p class="card-text"style="color: black">작성일자: {{ news.pubdate }}</p>
-                    </div>
-                  </a>
-              </div>
+              {% endfor %}
             </div>
+        <!-- 페이징처리 시작 -->
+        <ul class="pagination justify-content-center">
+            <!-- 이전페이지 -->
+            {% if news_list.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ news_list.previous_page_number }}">이전</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+            </li>
+            {% endif %}
+            <!-- 페이지리스트 -->
+            {% for page_number in news_list.paginator.page_range %}
+            {% if page_number >= news_list.number|add:-5 and page_number <= news_list.number|add:5 %}
+            {% if page_number == news_list.number %}
+            <li class="page-item active" aria-current="page">
+                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            <!-- 다음페이지 -->
+            {% if news_list.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ news_list.next_page_number }}">다음</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+            </li>
+            {% endif %}
+        </ul>
+        <!-- 페이징처리 끝 -->
         </div>
-        {% endfor %}
-    </div>
-      </div>
-</div>
-
-{#                        <td data-th="Name">{{ market.title }}</td>#}
-{#                        <td data-th="Now Price(KRW)">{{ market.sub_title }}</td>#}
-{#                        <td data-th="Volume Change(24H)">{{ market.pubdate }}</td>#}
     </div>
 </section>
 <!-- Bootstrap core JS-->
