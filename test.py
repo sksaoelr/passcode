@@ -9,11 +9,12 @@ headers = {
     'API KEY ': api_key,
 }
 response = requests.get(url, headers)
+dict_data = json.loads(response.content)
+print(dict_data['Data']['Data'])
 
-in_data = json.loads(response.text)
-
-for row in in_data:
+#
+for row in dict_data['Data']['Data']:
     print(row)
     print(type(json.loads(row)))
-    # d = datetime.date.fromtimestamp(row['Data']['time'])
+    d = datetime.date.fromtimestamp(row['Data']['time'])
     # print(d)

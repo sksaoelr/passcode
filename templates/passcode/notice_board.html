@@ -4,8 +4,69 @@
 
 <!-- Services-->
 <section class="page-section" id="company_info">
-    <div class="container">
-ㅁㄴㅇㅁ
+<!-- TradingView Widget BEGIN -->
+<div class="container">
+    <ul class="nav nav-tabs justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" href="#chart">Chart</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#info">Info</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+</ul>
+    <!-- TradingView Widget BEGIN -->
+<div id = 'chart'>
+<div class="tradingview-widget-container">
+  <div id="tradingview_5e7f0"></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+      <script type="text/javascript">
+      new TradingView.MediumWidget(
+      {
+      "symbols": [
+        [
+          "BTC",
+          "BINANCE:BTCUSDT|12M"
+        ],
+        [
+          "ETH",
+          "BINANCE:ETHUSDT|12M"
+        ],
+        [
+          "XRP",
+          "BINANCE:XRPUSDT|12M"
+        ]
+      ],
+      "chartOnly": false,
+      "width": "50%",
+      "height": 500,
+      "locale": "kr",
+      "colorTheme": "light",
+      "autosize": true,
+      "showVolume": false,
+      "hideDateRanges": false,
+      "hideMarketStatus": false,
+      "scalePosition": "right",
+      "scaleMode": "Normal",
+      "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+      "fontSize": "10",
+      "noTimeScale": false,
+      "valuesTracking": "1",
+      "chartType": "line",
+      "lineWidth": 1,
+      "container_id": "tradingview_5e7f0"
+    }
+      );
+      </script>
+    </div>
+    <!-- TradingView Widget END -->
+    </div>
+    </div>
+    <!-- TradingView Widget END -->
+    <div id = 'info'>
+        ddd
     </div>
 </section>
 <!-- Bootstrap core JS-->

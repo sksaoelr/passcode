@@ -61,8 +61,11 @@ def nft_info(request):
     return render(request, 'passcode/nft_info.html', context)
 
 def notice_board(request):
-
-    return render(request, 'passcode/notice_board.html')
+    context = {
+        'symbol' : 'BTC',
+        'symbol_code': 'BINANCE:BTCUSDT|12M'
+    }
+    return render(request, 'passcode/notice_board.html', context)
 
 def news_board(request):
     page = request.GET.get('page', '1')  # 페이지
@@ -86,7 +89,7 @@ def news_board(request):
         }
         result.append(temp_data)
 
-    paginator = Paginator(result, 5)  # 페이지당 10개씩 보여주기
+    paginator = Paginator(result, 9)  # 페이지당 10개씩 보여주기
     page_obj = paginator.get_page(page)
     context = {'news_list': page_obj}
 
