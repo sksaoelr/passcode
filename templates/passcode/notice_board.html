@@ -10,68 +10,70 @@
         <h3 class="section-heading text-uppercase">Cryptocurrency</h3>
         <h3 class="section-subheading text-muted">Information</h3>
     </div>
-    <nav>
-      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <button class="nav-link active" id="nav-rank-tab" data-bs-toggle="tab" data-bs-target="#rank" type="button" role="tab" aria-controls="nav-rank" aria-selected="true">등급</button>
-        <button class="nav-link" id="nav-chart-tab" data-bs-toggle="tab" data-bs-target="#chart" type="button" role="tab" aria-controls="nav-chart" aria-selected="false">차트</button>
-        <button class="nav-link" id="nav-announce-tab" data-bs-toggle="tab" data-bs-target="#announce" type="button" role="tab" aria-controls="nav-announce" aria-selected="false">정보</button>
-        <button class="nav-link" id="nav-info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="nav-info" aria-selected="false">공시</button>
-      </div>
-    </nav>
-    <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="rank" role="tabpanel" aria-labelledby="nav-rank-tab">
-            등급
-      </div>
-      <div class="tab-pane fade" id="chart" role="tabpanel" aria-labelledby="nav-chart-tab">
-        <div class="tradingview-widget-container">
-          <div id="tradingview_5e7f0"></div>
-              <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-              <script type="text/javascript">
-              new TradingView.MediumWidget(
-              {
-              "symbols": [
-                [
-                  "BTC",
-                  "BINANCE:BTCUSDT|12M"
-                ],
-                [
-                  "ETH",
-                  "BINANCE:ETHUSDT|12M"
-                ],
-                [
-                  "XRP",
-                  "BINANCE:XRPUSDT|12M"
-                ]
-              ],
-              "chartOnly": false,
-              "width": "50%",
-              "height": 500,
-              "locale": "kr",
-              "colorTheme": "light",
-              "autosize": true,
-              "showVolume": false,
-              "hideDateRanges": false,
-              "hideMarketStatus": false,
-              "scalePosition": "right",
-              "scaleMode": "Normal",
-              "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
-              "fontSize": "10",
-              "noTimeScale": false,
-              "valuesTracking": "1",
-              "chartType": "line",
-              "lineWidth": 1,
-              "container_id": "tradingview_5e7f0"
-            }
-              );
-           </script>
+    <div>
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-rank-tab" data-bs-toggle="tab" data-bs-target="#rank" type="button" role="tab" aria-controls="nav-rank" aria-selected="true">등급</button>
+            <button class="nav-link" id="nav-chart-tab" data-bs-toggle="tab" data-bs-target="#chart" type="button" role="tab" aria-controls="nav-chart" aria-selected="false">차트</button>
+            <button class="nav-link" id="nav-announce-tab" data-bs-toggle="tab" data-bs-target="#announce" type="button" role="tab" aria-controls="nav-announce" aria-selected="false">정보</button>
+            <button class="nav-link" id="nav-info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="nav-info" aria-selected="false">공시</button>
           </div>
-      </div>
-      <div class="tab-pane fade" id="announce" role="tabpanel" aria-labelledby="nav-announce-tab">
-            asdflksjadfkl
-      </div>
-      <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="nav-info-tab">
-            asdflksjadfkl
-      </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="rank" role="tabpanel" aria-labelledby="nav-rank-tab">
+                등급
+          </div>
+          <div class="tab-pane fade" id="chart" role="tabpanel" aria-labelledby="nav-chart-tab">
+            <div class="tradingview-widget-container">
+              <div id="tradingview_5e7f0"></div>
+                  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                  <script type="text/javascript">
+                  new TradingView.MediumWidget(
+                  {
+                  "symbols": [
+                    [
+                      "BTC",
+                      "BINANCE:BTCUSDT|12M"
+                    ],
+                    [
+                      "ETH",
+                      "BINANCE:ETHUSDT|12M"
+                    ],
+                    [
+                      "XRP",
+                      "BINANCE:XRPUSDT|12M"
+                    ]
+                  ],
+                  "chartOnly": false,
+                  "width": "50%",
+                  "height": 500,
+                  "locale": "kr",
+                  "colorTheme": "light",
+                  "autosize": true,
+                  "showVolume": false,
+                  "hideDateRanges": false,
+                  "hideMarketStatus": false,
+                  "scalePosition": "right",
+                  "scaleMode": "Normal",
+                  "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+                  "fontSize": "10",
+                  "noTimeScale": false,
+                  "valuesTracking": "1",
+                  "chartType": "line",
+                  "lineWidth": 1,
+                  "container_id": "tradingview_5e7f0"
+                }
+                  );
+               </script>
+              </div>
+          </div>
+          <div class="tab-pane fade" id="announce" role="tabpanel" aria-labelledby="nav-announce-tab">
+                asdflksjadfkl
+          </div>
+          <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="nav-info-tab">
+                asdflksjadfkl
+          </div>
+        </div>
     </div>
 </div>
 </section>

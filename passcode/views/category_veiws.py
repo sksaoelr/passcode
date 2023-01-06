@@ -8,6 +8,7 @@ import requests
 import json
 import sys, os
 import logging
+import datetime
 logger = logging.getLogger('category')
 
 def company_info(request):
@@ -79,13 +80,15 @@ def news_board(request):
     in_data = json.loads(response.content.decode('utf-8'))
     result = []
     for row in in_data['data']:
+        update_date = row['pubdate'][5:10].replace('0', '').replace('-','/')
         temp_data = {
             'id' : row['id'],
             'title' : row['title'],
             'sub_title' : row['sub_title'],
-            'pubdate' : row['pubdate'],
+            'pubdate' : row['pubdate'][:10],
             'updated_at' : row['updated_at'],
-            'thumbnail' : row['thumbnail']
+            'thumbnail' : row['thumbnail'],
+            'update_date' : update_date
         }
         result.append(temp_data)
 
