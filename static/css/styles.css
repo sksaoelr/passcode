@@ -5015,15 +5015,15 @@ textarea.form-control-lg {
     background-position-x: 1rem;
   }
 }
-.progress {
+/*.progress {
   display: flex;
   height: 1rem;
   overflow: hidden;
   font-size: 0.75rem;
   background-color: #e9ecef;
   border-radius: 0.25rem;
-}
-
+}*/
+/*
 .progress-bar {
   display: flex;
   flex-direction: column;
@@ -5034,7 +5034,7 @@ textarea.form-control-lg {
   white-space: nowrap;
   background-color: #ffc800;
   transition: width 0.6s ease;
-}
+}*/
 @media (prefers-reduced-motion: reduce) {
   .progress-bar {
     transition: none;
