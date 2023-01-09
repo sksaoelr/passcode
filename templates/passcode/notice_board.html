@@ -25,20 +25,30 @@
             <div class="tab-content" id="nav-tabContent">
               <div class="tab-pane fade show active" id="rank" role="tabpanel" aria-labelledby="nav-rank-tab">
                   <div class="row">
-                      <div class="col-12">
-                          가치
-                      </div>
-                      <div class="col-12">
-                          <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="rank_row">
+                          <div class="col-12">
+                              가치
                           </div>
-                      </div>
-                      <div class="col-12">
-                          기술
-                      </div>
-                      <div class="col-12">
-                          <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                          <div class="col-12" id="rank_progress">
+                              <div class="progress">
+                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                          </div>
+                          <div class="col-12">
+                              기술
+                          </div>
+                          <div class="col-12" id="rank_progress">
+                              <div class="progress">
+                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                          </div>
+                          <div class="col-12">
+                              보안
+                          </div>
+                          <div class="col-12" id="rank_progress">
+                              <div class="progress">
+                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
                           </div>
                       </div>
                   </div>
@@ -104,15 +114,47 @@
             <div class="tab-content">
               <div class="tab-pane fade show active" id="asset" role="tabpanel" aria-labelledby="nav-asset-tab">
                   <div class="row">
-                      <div class="col-12">
-                          <img src="{% static 'assets/img/symbol/bit.png' %}" alt="..." />
+                      <div class="col-12" style="padding: 15px">
+                          등급
                       </div>
-                      <div class="col-12">
-                          <img src="{% static 'assets/img/symbol/eth.png' %}" alt="..." />
+                      <div class="col-3" style="border: black solid" >
+                          <img src="{% static 'assets/img/symbol/2bit.png' %}" alt="..." />
                       </div>
-                      <div class="col-12">
-                          <img src="{% static 'assets/img/symbol/xrp.png' %}" alt="..." />
+                      <div class="col-4">
+                          <div class="row">
+                              <div class="col-12" style="color: #C0C0C0;font-size: 13px">bbb</div>
+                              <div class="col-12" style="font-weight: bold">aaaaaaa</div>
+                          </div>
                       </div>
+                      <div class="col-5" style="padding-top: 9px; border: black solid">
+                            bbbbb
+                      </div>
+                                            <div class="col-3">
+                          <img src="{% static 'assets/img/symbol/2bit.png' %}" alt="..." />
+                      </div>
+                      <div class="col-4">
+                          <div class="row">
+                              <div class="col-12" style="color: #C0C0C0;font-size: 13px">bbb</div>
+                              <div class="col-12" style="font-weight: bold">aaaaaaa</div>
+                          </div>
+                      </div>
+                      <div class="col-5">
+                            bbbbb
+                      </div>
+                                            <div class="col-3">
+                          <img src="{% static 'assets/img/symbol/2bit.png' %}" alt="..." />
+                      </div>
+                      <div class="col-4">
+                          <div class="row">
+                              <div class="col-12" style="color: #C0C0C0;font-size: 13px">bbb</div>
+                              <div class="col-12" style="font-weight: bold">aaaaaaa</div>
+                          </div>
+                      </div>
+                      <div class="col-5">
+                            bbbbb
+                      </div>
+
+
                   </div>
               </div>
             </div>

@@ -2,61 +2,159 @@
 {% load static %}
 {% block content %}
 
-
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.min.js" integrity="sha512-fYE9wAJg2PYbpJPxyGcuzDSiMuWJiw58rKa9MWQICkAqEO+xeJ5hg5qPihF8kqa7tbgJxsmgY0Yp51+IMrSEVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>#}
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.js" integrity="sha512-WO0SXOKvvsK5FNXvL6ubuT0GxNXf+c4PoCrVl+LEpB5F2MaV0+JQ4hvqknzIF7vox5RfxByJGuMEremu79g5pQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>#}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.umd.js" integrity="sha512-t41WshQCxr9T3SWH3DBZoDnAT9gfVLtQS+NKO60fdAwScoB37rXtdxT/oKe986G0BFnP4mtGzXxuYpHrMoMJLA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.umd.min.js" integrity="sha512-KTyzZ0W6S8dUq9WIt8fSflj2ArYRGcGNIU5QcB1skGGd1EPFMupHZSexEsFFX18tZK4eO0iGGSZGuyrNIqjV8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js"></script>#}
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/helpers.js" integrity="sha512-eddNByDbhceXHOWi9Hjyig1DUp7DqSq9AO5xKiw6j07v4jzRDUJqdu9oYA49UXemGD0Aja42zw4t+DVdXE0X/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>#}
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/helpers.min.js" integrity="sha512-JG3S/EICkp8Lx9YhtIpzAVJ55WGnxT3T6bfiXYbjPRUoN9yu+ZM+wVLDsI/L2BWRiKjw/67d+/APw/CDn+Lm0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>#}
 <!-- Services-->
 <section class="page-section" id="nft_info">
-    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-	<!-- 4. 사이트 html 하단 figure 태그 -->
-	<figure class="highcharts-figure">
-      <div id="container"></div>
-    </figure>
+<div class="row">
+    <div class="col-6">
+        <canvas id="myChart" width="150" height="150"></canvas>
+    </div>
+    <div class="col-6">
+       <canvas id="myChart2" width="150" height="150"></canvas>
+    </div>
+</div>
 
-    <!-- 5. <script src="{% static 'line.js' %}" ></script> -->
-    <!-- 6. script -->
-    <script>
-      Highcharts.chart('container', {
-        chart: {
-          type: 'spline'
-        },
-        title: {
-          text: 'Monthly Average Temperature'
-        },
-        subtitle: {
-          text: 'Source: WorldClimate.com'
-        },
-        xAxis: {
-          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        },
-        yAxis: {
-          title: {
-            text: 'Temperature'
-          }
-        },
-        tooltip: {
-          crosshairs: true,
-          shared: true
-        },
-        plotOptions: {
-          spline: {
-            marker: {
-              radius: 4,
-              lineColor: '#666666',
-              lineWidth: 1
-            }
-          }
-        },
-        series: [{
-            name: 'london',
-            marker: {
-              symbol: 'square'
-            },
-            data: {{london}}
 
-          }]
-      });
-    </script>
 </section>
+<script>
+var ctx = document.getElementById('myChart2').getContext('2d');
+var myChart2 = new Chart(ctx, {
+    type: 'doughnut',
+    data : {
+      labels: [
+        '',
+        '',
+      ],
+    datasets: [{
+      label: 'My First Dataset',
+      data: [50, 50],
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+      ],
+      hoverOffset: 4
+      }]
+    },
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                },
+            }
+        }
+  });
+
+var ctx = document.getElementById('myChart2322').getContext('2d');
+var myChart2 = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: [
+            '',
+            '',
+        ],
+        datasets: [{
+            label: '',
+            data: [50, 50],
+            fill: true,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(231,226,138)',
+            pointBackgroundColor: 'rgb(255, 99, 132)',
+            pointBorderColor: '#797676',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(255,99,132)'
+        }]
+    },
+    options: {
+        plugins: {
+            legend: {
+                display: false
+            },
+        },
+        elements: {
+            line: {
+                borderWidth: 4
+            }, center: {
+                text: 'Red is 2/3 the total numbers',
+                color: '#FF6384', // Default is #000000
+                fontStyle: 'Arial', // Default is Arial
+                sidePadding: 20, // Default is 20 (as a percentage)
+                minFontSize: 20, // Default is 20 (in px), set to false and text will not wrap.
+                lineHeight: 25 // Default is 25 (in px), used for when text wraps
+            }
+        },
+        scale: {
+            r: {
+                min: 0,
+                max: 100,
+                angleLines: {
+                    display: false
+                },
+                ticks: {
+                    display: true,
+                }
+            },
+        }
+    }
+});
+
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+type: 'radar',
+  data: {
+	  labels: [
+	    '가치',
+	    '기술',
+	    '보안',
+	    '성과',
+        '활동',
+	  ],
+	  datasets: [{
+	    label: 'BITCOIN',
+	    data: [50, 50, 50, 50, 50],
+	    fill: true,
+	    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+	    borderColor: 'rgb(255, 99, 132)',
+	    {#pointBackgroundColor: 'rgb(255, 99, 132)',#}
+	    pointBorderColor: '#fff',
+	    pointHoverBackgroundColor: '#fff',
+	    pointHoverBorderColor: 'rgb(255, 99, 132)'
+	  }]
+  },
+  options: {
+    plugins:{
+        legend: {
+            display: false
+        },
+    },
+    elements: {
+      line: {
+        borderWidth: 4
+      },
+    },
+    scale : {
+        r: {
+          min: 0,
+          max: 100,
+          angleLines: {
+            display: false
+          },
+          ticks: {
+            display: true,
+          }
+        },
+    }
+  }
+});
+
+</script>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
