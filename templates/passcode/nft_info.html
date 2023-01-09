@@ -2,14 +2,10 @@
 {% load static %}
 {% block content %}
 
-{#<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.min.js" integrity="sha512-fYE9wAJg2PYbpJPxyGcuzDSiMuWJiw58rKa9MWQICkAqEO+xeJ5hg5qPihF8kqa7tbgJxsmgY0Yp51+IMrSEVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>#}
-{#<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.js" integrity="sha512-WO0SXOKvvsK5FNXvL6ubuT0GxNXf+c4PoCrVl+LEpB5F2MaV0+JQ4hvqknzIF7vox5RfxByJGuMEremu79g5pQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>#}
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.umd.js" integrity="sha512-t41WshQCxr9T3SWH3DBZoDnAT9gfVLtQS+NKO60fdAwScoB37rXtdxT/oKe986G0BFnP4mtGzXxuYpHrMoMJLA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.umd.min.js" integrity="sha512-KTyzZ0W6S8dUq9WIt8fSflj2ArYRGcGNIU5QcB1skGGd1EPFMupHZSexEsFFX18tZK4eO0iGGSZGuyrNIqjV8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-{#<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
-{#<script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js"></script>#}
-{#<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/helpers.js" integrity="sha512-eddNByDbhceXHOWi9Hjyig1DUp7DqSq9AO5xKiw6j07v4jzRDUJqdu9oYA49UXemGD0Aja42zw4t+DVdXE0X/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>#}
-{#<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/helpers.min.js" integrity="sha512-JG3S/EICkp8Lx9YhtIpzAVJ55WGnxT3T6bfiXYbjPRUoN9yu+ZM+wVLDsI/L2BWRiKjw/67d+/APw/CDn+Lm0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>#}
+<script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.js"></script>
 <!-- Services-->
 <section class="page-section" id="nft_info">
 <div class="row">
@@ -17,91 +13,59 @@
         <canvas id="myChart" width="150" height="150"></canvas>
     </div>
     <div class="col-6">
-       <canvas id="myChart2" width="150" height="150"></canvas>
+       <canvas id="myChart2"></canvas>
     </div>
 </div>
 
 
 </section>
 <script>
-var ctx = document.getElementById('myChart2').getContext('2d');
-var myChart2 = new Chart(ctx, {
-    type: 'doughnut',
-    data : {
+Chart.pluginService.register({
+  beforeDraw: function(chart) {
+    var width = chart.chart.width,
+        height = chart.chart.height,
+        ctx = chart.chart.ctx;
+
+    ctx.restore();
+    var fontSize = (height / 114).toFixed(2);
+    ctx.font = fontSize + "em sans-serif";
+    ctx.textBaseline = "middle";
+
+    var text = "A",
+        textX = Math.round((width - ctx.measureText(text).width) / 2),
+        textY = height / 2;
+
+    ctx.fillText(text, textX, textY);
+    ctx.save();
+  }
+});
+
+var chart = new Chart(document.getElementById('myChart2').getContext('2d'), {
+  type: 'doughnut',
+  data: {
       labels: [
-        '',
-        '',
+        "Red",
+        "Blue"
       ],
-    datasets: [{
-      label: 'My First Dataset',
+  datasets: [
+    {
       data: [50, 50],
       backgroundColor: [
-        'rgb(255, 99, 132)',
-        'rgb(54, 162, 235)',
+        "#FF6384",
+        "#36A2EB",
       ],
-      hoverOffset: 4
-      }]
+      hoverBackgroundColor: [
+        "#FF6384",
+        "#36A2EB",
+      ]
+    }]
     },
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-                },
-            }
-        }
-  });
-
-var ctx = document.getElementById('myChart2322').getContext('2d');
-var myChart2 = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: [
-            '',
-            '',
-        ],
-        datasets: [{
-            label: '',
-            data: [50, 50],
-            fill: true,
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgb(231,226,138)',
-            pointBackgroundColor: 'rgb(255, 99, 132)',
-            pointBorderColor: '#797676',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(255,99,132)'
-        }]
-    },
-    options: {
-        plugins: {
-            legend: {
-                display: false
-            },
-        },
-        elements: {
-            line: {
-                borderWidth: 4
-            }, center: {
-                text: 'Red is 2/3 the total numbers',
-                color: '#FF6384', // Default is #000000
-                fontStyle: 'Arial', // Default is Arial
-                sidePadding: 20, // Default is 20 (as a percentage)
-                minFontSize: 20, // Default is 20 (in px), set to false and text will not wrap.
-                lineHeight: 25 // Default is 25 (in px), used for when text wraps
-            }
-        },
-        scale: {
-            r: {
-                min: 0,
-                max: 100,
-                angleLines: {
-                    display: false
-                },
-                ticks: {
-                    display: true,
-                }
-            },
-        }
+  options: {
+    responsive: true,
+    legend: {
+      display: false
     }
+  }
 });
 
 
@@ -119,7 +83,6 @@ type: 'radar',
 	  datasets: [{
 	    label: 'BITCOIN',
 	    data: [50, 50, 50, 50, 50],
-	    fill: true,
 	    backgroundColor: 'rgba(255, 99, 132, 0.2)',
 	    borderColor: 'rgb(255, 99, 132)',
 	    {#pointBackgroundColor: 'rgb(255, 99, 132)',#}
@@ -129,27 +92,21 @@ type: 'radar',
 	  }]
   },
   options: {
-    plugins:{
-        legend: {
-            display: false
-        },
+      legend: {
+        display: false
     },
+    plugins:false,
     elements: {
       line: {
         borderWidth: 4
-      },
+      }
     },
-    scale : {
-        r: {
-          min: 0,
-          max: 100,
-          angleLines: {
-            display: false
-          },
-          ticks: {
-            display: true,
-          }
-        },
+    scale:{
+      ticks: {
+      beginAtZero: true,
+      min: 0,
+      max: 100,
+      }
     }
   }
 });
