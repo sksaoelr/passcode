@@ -15,7 +15,7 @@
     <div class="row">
 <!--            <div class="col-md-8">.col-md-8</div>-->
 <!--            <div class="col-6 col-md-4">.col-6 .col-md-4</div>-->
-        <div class="col">
+        <div class="col" style="border-right: black solid">
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-rank-tab" data-bs-toggle="tab" data-bs-target="#rank" type="button" role="tab" aria-controls="nav-rank" aria-selected="true">등급</button>
@@ -28,7 +28,7 @@
               <div class="tab-pane fade show active" id="rank" role="tabpanel" aria-labelledby="nav-rank-tab">
                   <div class="row">
                       <div class="col-2" style="padding:15px">
-                          <img src="{% static 'assets/img/symbol/bit.png' %}" alt="..." />
+                          <img src="{% static 'assets/img/symbol/1bit.png' %}" alt="..." />
                       </div>
                       <div class="col-10" style="padding:20px">
                           <div class="row">
@@ -39,8 +39,9 @@
                       <div class="col-6">
                             <canvas id="myChart" width="150" height="150"></canvas>
                       </div>
-                      <div class="col-6">
-                            <canvas id="myChart2" width="150" height="150"></canvas>
+                      <div class="col-6" style="border: black solid">
+{#                           <p class="align-self-center fs-1">A</p>#}
+                          <div class="align-middle">col2</div>
                       </div>
                       <div class="rank_row">
                           <div class="col-12">
@@ -48,7 +49,7 @@
                           </div>
                           <div class="col-12" id="rank_progress">
                               <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                               </div>
                           </div>
                           <div class="col-12">
@@ -56,7 +57,7 @@
                           </div>
                           <div class="col-12" id="rank_progress">
                               <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                               </div>
                           </div>
                           <div class="col-12">
@@ -64,7 +65,23 @@
                           </div>
                           <div class="col-12" id="rank_progress">
                               <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                          </div>
+                          <div class="col-12">
+                              성과
+                          </div>
+                          <div class="col-12" id="rank_progress">
+                              <div class="progress">
+                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                          </div>
+                          <div class="col-12">
+                              활동
+                          </div>
+                          <div class="col-12" id="rank_progress">
+                              <div class="progress">
+                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                               </div>
                           </div>
                       </div>
@@ -146,7 +163,7 @@
                       <div class="col-5" style="padding-top: 9px; border: black solid">
                             AAA
                       </div>
-                                            <div class="col-3">
+                      <div class="col-3">
                           <img src="{% static 'assets/img/symbol/2bit.png' %}" alt="..." />
                       </div>
                       <div class="col-4">
@@ -158,7 +175,7 @@
                       <div class="col-5">
                             AAA
                       </div>
-                                            <div class="col-3">
+                      <div class="col-3">
                           <img src="{% static 'assets/img/symbol/2bit.png' %}" alt="..." />
                       </div>
                       <div class="col-4">
@@ -170,8 +187,6 @@
                       <div class="col-5">
                             A
                       </div>
-
-
                   </div>
               </div>
             </div>
@@ -197,7 +212,7 @@ type: 'radar',
 	    label: 'BITCOIN',
 	    data: [50, 50, 50, 50, 50],
 	    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-	    borderColor: 'rgb(255, 99, 132)',
+	    borderColor: 'rgb(255,99,132)',
 	    {#pointBackgroundColor: 'rgb(255, 99, 132)',#}
 	    pointBorderColor: '#fff',
 	    pointHoverBackgroundColor: '#fff',
