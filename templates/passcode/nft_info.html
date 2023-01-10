@@ -10,106 +10,122 @@
 <section class="page-section" id="nft_info">
 <div class="row">
     <div class="col-6">
-        <canvas id="myChart" width="150" height="150"></canvas>
-    </div>
-    <div class="col-6">
-       <canvas id="myChart2"></canvas>
+    <table class="rwd-table">
+        <tbody>
+        <tr>
+            <th>SYMBOL</th>
+            <th>Name</th>
+            <th>Now Price(KRW)</th>
+            <th>Volume Change(24H)</th>
+            <th>Market Cap</th>
+        </tr>
+        {% for market in market_list %}
+            <tr>
+            <td data-th="SYMBOL">{{ market.symbol }}</td>
+            <td data-th="Name">{{ market.name }}</td>
+            <td data-th="Now Price(KRW)">{{ market.KRW }}</td>
+            <td data-th="Volume Change(24H)">{{ market.volume_change_24h }}</td>
+            <td data-th="Market Cap">{{ market.market_cap }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
     </div>
 </div>
 
 
 </section>
 <script>
-Chart.pluginService.register({
-  beforeDraw: function(chart) {
-    var width = chart.chart.width,
-        height = chart.chart.height,
-        ctx = chart.chart.ctx;
+<!--Chart.pluginService.register({-->
+<!--  beforeDraw: function(chart) {-->
+<!--    var width = chart.chart.width,-->
+<!--        height = chart.chart.height,-->
+<!--        ctx = chart.chart.ctx;-->
 
-    ctx.restore();
-    var fontSize = (height / 114).toFixed(2);
-    ctx.font = fontSize + "em sans-serif";
-    ctx.textBaseline = "middle";
+<!--    ctx.restore();-->
+<!--    var fontSize = (height / 114).toFixed(2);-->
+<!--    ctx.font = fontSize + "em sans-serif";-->
+<!--    ctx.textBaseline = "middle";-->
 
-    var text = "A",
-        textX = Math.round((width - ctx.measureText(text).width) / 2),
-        textY = height / 2;
+<!--    var text = "A",-->
+<!--        textX = Math.round((width - ctx.measureText(text).width) / 2),-->
+<!--        textY = height / 2;-->
 
-    ctx.fillText(text, textX, textY);
-    ctx.save();
-  }
-});
+<!--    ctx.fillText(text, textX, textY);-->
+<!--    ctx.save();-->
+<!--  }-->
+<!--});-->
 
-var chart = new Chart(document.getElementById('myChart2').getContext('2d'), {
-  type: 'doughnut',
-  data: {
-      labels: [
-        "Red",
-        "Blue"
-      ],
-  datasets: [
-    {
-      data: [50, 50],
-      backgroundColor: [
-        "#FF6384",
-        "#36A2EB",
-      ],
-      hoverBackgroundColor: [
-        "#FF6384",
-        "#36A2EB",
-      ]
-    }]
-    },
-  options: {
-    responsive: true,
-    legend: {
-      display: false
-    }
-  }
-});
+<!--var chart = new Chart(document.getElementById('myChart2').getContext('2d'), {-->
+<!--  type: 'doughnut',-->
+<!--  data: {-->
+<!--      labels: [-->
+<!--        "Red",-->
+<!--        "Blue"-->
+<!--      ],-->
+<!--  datasets: [-->
+<!--    {-->
+<!--      data: [50, 50],-->
+<!--      backgroundColor: [-->
+<!--        "#FF6384",-->
+<!--        "#36A2EB",-->
+<!--      ],-->
+<!--      hoverBackgroundColor: [-->
+<!--        "#FF6384",-->
+<!--        "#36A2EB",-->
+<!--      ]-->
+<!--    }]-->
+<!--    },-->
+<!--  options: {-->
+<!--    responsive: true,-->
+<!--    legend: {-->
+<!--      display: false-->
+<!--    }-->
+<!--  }-->
+<!--});-->
 
 
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-type: 'radar',
-  data: {
-	  labels: [
-	    '가치',
-	    '기술',
-	    '보안',
-	    '성과',
-        '활동',
-	  ],
-	  datasets: [{
-	    label: 'BITCOIN',
-	    data: [50, 50, 50, 50, 50],
-	    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-	    borderColor: 'rgb(255, 99, 132)',
-	    {#pointBackgroundColor: 'rgb(255, 99, 132)',#}
-	    pointBorderColor: '#fff',
-	    pointHoverBackgroundColor: '#fff',
-	    pointHoverBorderColor: 'rgb(255, 99, 132)'
-	  }]
-  },
-  options: {
-      legend: {
-        display: false
-    },
-    plugins:false,
-    elements: {
-      line: {
-        borderWidth: 4
-      }
-    },
-    scale:{
-      ticks: {
-      beginAtZero: true,
-      min: 0,
-      max: 100,
-      }
-    }
-  }
-});
+<!--var ctx = document.getElementById('myChart').getContext('2d');-->
+<!--var myChart = new Chart(ctx, {-->
+<!--type: 'radar',-->
+<!--  data: {-->
+<!--	  labels: [-->
+<!--	    '가치',-->
+<!--	    '기술',-->
+<!--	    '보안',-->
+<!--	    '성과',-->
+<!--        '활동',-->
+<!--	  ],-->
+<!--	  datasets: [{-->
+<!--	    label: 'BITCOIN',-->
+<!--	    data: [50, 50, 50, 50, 50],-->
+<!--	    backgroundColor: 'rgba(255, 99, 132, 0.2)',-->
+<!--	    borderColor: 'rgb(255, 99, 132)',-->
+<!--	    {#pointBackgroundColor: 'rgb(255, 99, 132)',#}-->
+<!--	    pointBorderColor: '#fff',-->
+<!--	    pointHoverBackgroundColor: '#fff',-->
+<!--	    pointHoverBorderColor: 'rgb(255, 99, 132)'-->
+<!--	  }]-->
+<!--  },-->
+<!--  options: {-->
+<!--      legend: {-->
+<!--        display: false-->
+<!--    },-->
+<!--    plugins:false,-->
+<!--    elements: {-->
+<!--      line: {-->
+<!--        borderWidth: 4-->
+<!--      }-->
+<!--    },-->
+<!--    scale:{-->
+<!--      ticks: {-->
+<!--      beginAtZero: true,-->
+<!--      min: 0,-->
+<!--      max: 100,-->
+<!--      }-->
+<!--    }-->
+<!--  }-->
+<!--});-->
 
 </script>
 <!-- Bootstrap core JS-->

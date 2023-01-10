@@ -13,8 +13,20 @@
         <h3 class="section-subheading text-muted">Information</h3>
     </div>
     <div class="row">
-<!--            <div class="col-md-8">.col-md-8</div>-->
-<!--            <div class="col-6 col-md-4">.col-6 .col-md-4</div>-->
+      <div class="col-1" style="padding:15px">
+          <img src="{% static 'assets/img/symbol/1bit.png' %}" alt="..." />
+      </div>
+      <div class="col-1" style="padding:20px">
+          <div class="row">
+              <div class="col-12" style="color: #C0C0C0;font-size: 13px">bbb</div>
+              <div class="col-12" style="font-weight: bold">aaaaaaa</div>
+          </div>
+      </div>
+        <div class="col-10 border">
+            <div>
+
+            </div>
+        </div>
         <div class="col" style="border-right: black solid">
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -27,64 +39,54 @@
             <div class="tab-content" id="nav-tabContent">
               <div class="tab-pane fade show active" id="rank" role="tabpanel" aria-labelledby="nav-rank-tab">
                   <div class="row">
-                      <div class="col-2" style="padding:15px">
-                          <img src="{% static 'assets/img/symbol/1bit.png' %}" alt="..." />
-                      </div>
-                      <div class="col-10" style="padding:20px">
-                          <div class="row">
-                              <div class="col-12" style="color: #C0C0C0;font-size: 13px">bbb</div>
-                              <div class="col-12" style="font-weight: bold">aaaaaaa</div>
-                          </div>
+                      <div class="col-6" style="border: black solid">
+                              <div class="align-middle">col2</div>
                       </div>
                       <div class="col-6">
                             <canvas id="myChart" width="150" height="150"></canvas>
                       </div>
-                      <div class="col-6" style="border: black solid">
-{#                           <p class="align-self-center fs-1">A</p>#}
-                          <div class="align-middle">col2</div>
-                      </div>
-                      <div class="rank_row">
-                          <div class="col-12">
-                              가치
-                          </div>
-                          <div class="col-12" id="rank_progress">
-                              <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                          </div>
-                          <div class="col-12">
-                              기술
-                          </div>
-                          <div class="col-12" id="rank_progress">
-                              <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                          </div>
-                          <div class="col-12">
-                              보안
-                          </div>
-                          <div class="col-12" id="rank_progress">
-                              <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                          </div>
-                          <div class="col-12">
-                              성과
-                          </div>
-                          <div class="col-12" id="rank_progress">
-                              <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                          </div>
-                          <div class="col-12">
-                              활동
-                          </div>
-                          <div class="col-12" id="rank_progress">
-                              <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                          </div>
-                      </div>
+<!--                      <div class="rank_row">-->
+<!--                          <div class="col-12">-->
+<!--                              가치-->
+<!--                          </div>-->
+<!--                          <div class="col-12" id="rank_progress">-->
+<!--                              <div class="progress">-->
+<!--                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                              </div>-->
+<!--                          </div>-->
+<!--                          <div class="col-12">-->
+<!--                              기술-->
+<!--                          </div>-->
+<!--                          <div class="col-12" id="rank_progress">-->
+<!--                              <div class="progress">-->
+<!--                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                              </div>-->
+<!--                          </div>-->
+<!--                          <div class="col-12">-->
+<!--                              보안-->
+<!--                          </div>-->
+<!--                          <div class="col-12" id="rank_progress">-->
+<!--                              <div class="progress">-->
+<!--                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                              </div>-->
+<!--                          </div>-->
+<!--                          <div class="col-12">-->
+<!--                              성과-->
+<!--                          </div>-->
+<!--                          <div class="col-12" id="rank_progress">-->
+<!--                              <div class="progress">-->
+<!--                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                              </div>-->
+<!--                          </div>-->
+<!--                          <div class="col-12">-->
+<!--                              활동-->
+<!--                          </div>-->
+<!--                          <div class="col-12" id="rank_progress">-->
+<!--                              <div class="progress">-->
+<!--                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                              </div>-->
+<!--                          </div>-->
+<!--                      </div>-->
                   </div>
               </div>
               <div class="tab-pane fade" id="chart" role="tabpanel" aria-labelledby="nav-chart-tab">
@@ -202,15 +204,16 @@ var myChart = new Chart(ctx, {
 type: 'radar',
   data: {
 	  labels: [
-	    '가치',
-	    '기술',
-	    '보안',
-	    '성과',
-        '활동',
+	    'Technology',
+	    'Token Economics',
+	    'Milestone & Progress',
+	    'Financial Sustainability',
+        'Community',
+        'Qualitative'
 	  ],
 	  datasets: [{
 	    label: 'BITCOIN',
-	    data: [50, 50, 50, 50, 50],
+	    data: [50, 50, 50, 50, 50, 70],
 	    backgroundColor: 'rgba(255, 99, 132, 0.2)',
 	    borderColor: 'rgb(255,99,132)',
 	    {#pointBackgroundColor: 'rgb(255, 99, 132)',#}

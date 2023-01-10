@@ -55,13 +55,34 @@ def cryptocurrency_info(request):
     return render(request, 'passcode/cryptocurrency_info.html', context)
 
 def nft_info(request):
-    london = [3.9,4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-    context = {
-        'london' : london,
+    url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC&tsyms=USD'
+    headers = {
+        'Apikey': '05770f67db120460076177af39481e38fe5b46a77563fa33dce00f7c8c469e4d'
     }
+
+    session = Session()
+    session.headers.update(headers)
+
+    response = session.get(url)
+    data = json.loads(response.text)
+    print(type(data))
+    market_list = []
+    for in_data in data['DISPLAY']:
+        temp_data = {
+            'name': in_data['name'],
+            'symbol': in_data['symbol'],
+            'KRW': format(round(in_data['quote']['KRW']['price']), ',d'),
+            'volume_change_24h': in_data['quote']['KRW']['volume_change_24h'],
+            'market_cap': format(round(in_data['quote']['KRW']['market_cap']), ',d')
+        }
+        market_list.append(temp_data)
+    context = {'market_list': market_list}
+
     return render(request, 'passcode/nft_info.html', context)
 
 def notice_board(request):
+
+
     context = {
         'symbol' : 'BTC',
         'symbol_code': 'BINANCE:BTCUSDT|12M'
