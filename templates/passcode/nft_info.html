@@ -2,133 +2,131 @@
 {% load static %}
 {% block content %}
 
-
+<script src="https://chartjs-plugin-doughnutlabel.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.umd.js" integrity="sha512-t41WshQCxr9T3SWH3DBZoDnAT9gfVLtQS+NKO60fdAwScoB37rXtdxT/oKe986G0BFnP4mtGzXxuYpHrMoMJLA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.umd.min.js" integrity="sha512-KTyzZ0W6S8dUq9WIt8fSflj2ArYRGcGNIU5QcB1skGGd1EPFMupHZSexEsFFX18tZK4eO0iGGSZGuyrNIqjV8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.js"></script>
 <!-- Services-->
 <section class="page-section" id="nft_info">
+
 <div class="row">
-    <div class="col-6">
-    <table class="rwd-table">
-        <tbody>
-        <tr>
-            <th>SYMBOL</th>
-            <th>Name</th>
-            <th>Now Price(KRW)</th>
-            <th>Volume Change(24H)</th>
-            <th>Market Cap</th>
-        </tr>
-        {% for market in market_list %}
-            <tr>
-            <td data-th="SYMBOL">{{ market.symbol }}</td>
-            <td data-th="Name">{{ market.name }}</td>
-            <td data-th="Now Price(KRW)">{{ market.KRW }}</td>
-            <td data-th="Volume Change(24H)">{{ market.volume_change_24h }}</td>
-            <td data-th="Market Cap">{{ market.market_cap }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    </div>
+  <div class="col-md" style="border: red solid">
+      <canvas id="eth_radar"></canvas>
+  </div>
+  <div class="col-md">
+        <canvas id="marksChart" width="150" height="150"></canvas>
+  </div>
 </div>
-
-
 </section>
+
+<!-- Bootstrap core JS-->
 <script>
-<!--Chart.pluginService.register({-->
-<!--  beforeDraw: function(chart) {-->
-<!--    var width = chart.chart.width,-->
-<!--        height = chart.chart.height,-->
-<!--        ctx = chart.chart.ctx;-->
+var ctx = document.getElementById('eth_radar').getContext('2d');
+var myDoughnutChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: data,
+  options: {
+    plugins: {
+      doughnutlabel: {
+        labels: [
+          {
+            text: 'The title',
+            font: {
+              size: '60'
+            }
+          },
+          {
+            text: getTotal,
+            font: {
+              size: '50'
+            },
+            color: 'grey'
+          },
+          {
+            text: '$100.000',
+            font: {
+              size: '30'
+            },
+            color: 'red'
+          },
+          {
+            text: '95%',
+            font: {
+              size: '45'
+            },
+          color: 'green'
+          }
+        ]
+      }
+    }
+  }
+});
 
-<!--    ctx.restore();-->
-<!--    var fontSize = (height / 114).toFixed(2);-->
-<!--    ctx.font = fontSize + "em sans-serif";-->
-<!--    ctx.textBaseline = "middle";-->
-
-<!--    var text = "A",-->
-<!--        textX = Math.round((width - ctx.measureText(text).width) / 2),-->
-<!--        textY = height / 2;-->
-
-<!--    ctx.fillText(text, textX, textY);-->
-<!--    ctx.save();-->
-<!--  }-->
-<!--});-->
-
-<!--var chart = new Chart(document.getElementById('myChart2').getContext('2d'), {-->
-<!--  type: 'doughnut',-->
-<!--  data: {-->
-<!--      labels: [-->
-<!--        "Red",-->
-<!--        "Blue"-->
-<!--      ],-->
-<!--  datasets: [-->
-<!--    {-->
-<!--      data: [50, 50],-->
-<!--      backgroundColor: [-->
-<!--        "#FF6384",-->
-<!--        "#36A2EB",-->
-<!--      ],-->
-<!--      hoverBackgroundColor: [-->
-<!--        "#FF6384",-->
-<!--        "#36A2EB",-->
-<!--      ]-->
-<!--    }]-->
-<!--    },-->
-<!--  options: {-->
-<!--    responsive: true,-->
-<!--    legend: {-->
-<!--      display: false-->
-<!--    }-->
-<!--  }-->
-<!--});-->
+var getTotal = function(myDoughnutChart) {
+	var sum = myDoughnutChart.config.data.datasets[0].data.reduce((a, b) => a + b, 0);
+	return `Total: ${sum}`;
+}
 
 
-<!--var ctx = document.getElementById('myChart').getContext('2d');-->
-<!--var myChart = new Chart(ctx, {-->
-<!--type: 'radar',-->
-<!--  data: {-->
-<!--	  labels: [-->
-<!--	    '가치',-->
-<!--	    '기술',-->
-<!--	    '보안',-->
-<!--	    '성과',-->
-<!--        '활동',-->
-<!--	  ],-->
-<!--	  datasets: [{-->
-<!--	    label: 'BITCOIN',-->
-<!--	    data: [50, 50, 50, 50, 50],-->
-<!--	    backgroundColor: 'rgba(255, 99, 132, 0.2)',-->
-<!--	    borderColor: 'rgb(255, 99, 132)',-->
-<!--	    {#pointBackgroundColor: 'rgb(255, 99, 132)',#}-->
-<!--	    pointBorderColor: '#fff',-->
-<!--	    pointHoverBackgroundColor: '#fff',-->
-<!--	    pointHoverBorderColor: 'rgb(255, 99, 132)'-->
-<!--	  }]-->
-<!--  },-->
-<!--  options: {-->
-<!--      legend: {-->
-<!--        display: false-->
-<!--    },-->
-<!--    plugins:false,-->
-<!--    elements: {-->
-<!--      line: {-->
-<!--        borderWidth: 4-->
-<!--      }-->
-<!--    },-->
-<!--    scale:{-->
-<!--      ticks: {-->
-<!--      beginAtZero: true,-->
-<!--      min: 0,-->
-<!--      max: 100,-->
-<!--      }-->
-<!--    }-->
-<!--  }-->
-<!--});-->
+var marksCanvas = document.getElementById("marksChart");
+
+Chart.defaults.global.defaultFontFamily = "Lato";
+Chart.defaults.global.defaultFontSize = 18;
+
+var marksData = {
+  labels: [
+        'Technology',
+	    'Token Economics',
+	    'Milestone & Progress',
+	    'Financial Sustainability',
+        'Community',
+        'Qualitative'],
+  datasets: [{
+    {#label: "전사",#}
+    backgroundColor: "transparent",
+    borderColor: "#646EFF",
+    fill: false,
+    radius: 3,
+    pointRadius: 3,
+    pointBorderWidth: 1,
+    pointBackgroundColor: "#646EFF",
+    pointHoverRadius: 1,
+    data: [3, 4, 3.3, 3, 3, 5]
+  }]
+};
+
+var chartOptions = {
+  scale: {
+    gridLines: {
+      color: "black",
+      lineWidth: 2
+    },
+    angleLines: {
+      display: false
+    },
+    ticks: {
+      beginAtZero: true,
+      min: 0,
+      max: 5,
+      stepSize: 1
+    },
+    pointLabels: {
+      fontSize: 18,
+      fontColor: "black"
+    }
+  },
+  legend: {
+    display: false,
+  }
+};
+
+var radarChart = new Chart(marksCanvas, {
+  type: 'radar',
+  data: marksData,
+  options: chartOptions
+});
 
 </script>
-<!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="{% static 'js/scripts.js' %}"></script>

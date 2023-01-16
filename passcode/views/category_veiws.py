@@ -23,38 +23,50 @@ def partners_info(request):
 
     return render(request, 'passcode/partners_info.html')
 
-def cryptocurrency_info(request):
-    url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
-    parameters = {
-        'start': '1',
-        'limit': '5',
-        'convert': 'KRW'
-    }
-    headers = {
-        'Accepts': 'application/json',
-        'X-CMC_PRO_API_KEY': '12581344-be5c-4c0e-8dca-a4198ab29dfe',
-    }
-
-    session = Session()
-    session.headers.update(headers)
-
-    response = session.get(url, params=parameters)
-    data = json.loads(response.text)
-    market_list = []
-    for in_data in data['data']:
-        temp_data = {
-            'name': in_data['name'],
-            'symbol': in_data['symbol'],
-            'KRW': format(round(in_data['quote']['KRW']['price']), ',d'),
-            'volume_change_24h': in_data['quote']['KRW']['volume_change_24h'],
-            'market_cap': format(round(in_data['quote']['KRW']['market_cap']), ',d')
-        }
-        market_list.append(temp_data)
-    context = {'market_list': market_list}
-    # print(context)
-    return render(request, 'passcode/cryptocurrency_info.html', context)
+# def cryptocurrency_info(request):
+#     url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+#     parameters = {
+#         'start': '1',
+#         'limit': '5',
+#         'convert': 'KRW'
+#     }
+#     headers = {
+#         'Accepts': 'application/json',
+#         'X-CMC_PRO_API_KEY': '12581344-be5c-4c0e-8dca-a4198ab29dfe',
+#     }
+#
+#     session = Session()
+#     session.headers.update(headers)
+#
+#     response = session.get(url, params=parameters)
+#     data = json.loads(response.text)
+#     market_list = []
+#     for in_data in data['data']:
+#         temp_data = {
+#             'name': in_data['name'],
+#             'symbol': in_data['symbol'],
+#             'KRW': format(round(in_data['quote']['KRW']['price']), ',d'),
+#             'volume_change_24h': in_data['quote']['KRW']['volume_change_24h'],
+#             'market_cap': format(round(in_data['quote']['KRW']['market_cap']), ',d')
+#         }
+#         market_list.append(temp_data)
+#     context = {'market_list': market_list}
+#     # print(context)
+#     return render(request, 'passcode/cryptocurrency_info.html', context)
 
 def nft_info(request):
+
+    return render(request, 'passcode/nft_info.html')
+
+def temp(request):
+    context = {'test': "test"}
+    return render(request, 'passcode/temp.html', context)
+
+def cryptocurrency_info(request):
+    #
+    # if request.method == 'GET':
+    #     symbol = request.GET['symbol']
+    #     print(symbol)
     url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC&tsyms=USD'
     headers = {
         'Apikey': '05770f67db120460076177af39481e38fe5b46a77563fa33dce00f7c8c469e4d'
@@ -65,29 +77,33 @@ def nft_info(request):
 
     response = session.get(url)
     data = json.loads(response.text)
-    print(type(data))
-    market_list = []
-    for in_data in data['DISPLAY']:
-        temp_data = {
-            'name': in_data['name'],
-            'symbol': in_data['symbol'],
-            'KRW': format(round(in_data['quote']['KRW']['price']), ',d'),
-            'volume_change_24h': in_data['quote']['KRW']['volume_change_24h'],
-            'market_cap': format(round(in_data['quote']['KRW']['market_cap']), ',d')
-        }
-        market_list.append(temp_data)
-    context = {'market_list': market_list}
-
-    return render(request, 'passcode/nft_info.html', context)
+    # print(data['DISPLAY']['BTC']['USD']['PRICE'])
+    # market_info = []
+    # print(data['DISPLAY']['BTC']['USD'])
+    # for in_data in data['DISPLAY']['BTC']['USD']:
+    #     print(in_data)
+    in_data = data['DISPLAY']['BTC']['USD']
+    market_info = {
+        'price': in_data['PRICE'],
+        'volume_change_24h': in_data['VOLUME24HOURTO'],
+        'market_cap': in_data['MKTCAP']
+    }
+    # market_info.append(temp_data)
+    context = {'market_info': market_info}
+    # print(context)
+    # if request.method == 'GET':
+    #     symbol = request.GET.get('symbol')
+    #     context['symbol'] = symbol
+    #     print(context)
+    # context = {
+    #     'symbol' : 'BTC',
+    #     'symbol_code': 'BINANCE:BTCUSDT|12M'
+    # }
+    return render(request, 'passcode/cryptocurrency_info.html', context)
 
 def notice_board(request):
 
-
-    context = {
-        'symbol' : 'BTC',
-        'symbol_code': 'BINANCE:BTCUSDT|12M'
-    }
-    return render(request, 'passcode/notice_board.html', context)
+    return render(request, 'passcode/notice_board.html')
 
 def news_board(request):
     page = request.GET.get('page', '1')  # 페이지

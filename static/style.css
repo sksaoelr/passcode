@@ -1,3 +1,33 @@
 .rank_row .col-12{
     padding-top: 10px;
 }
+
+.rank_text {
+    color: red;
+    font-weight: bold;
+}
+ .rank_symbol {
+     font-size: 13px;
+     color: gray;
+ }
+
+ .rank_symbol_row{
+     padding-top: 5px;
+
+ }
+ .market_info .market_title,
+ .rank_symbol_row .col-md-12{
+     font-weight: bold;
+ }
+ .market_info .market_title,
+ .market_info .market_content {
+     font-size : 15px;
+     color: black;
+ }
+
+ .category-title {
+     color: black;
+ }
+
+ .chart {float: left; width: 33.33%; height: 230px; text-align: center;}
+.chart span.title{position: relative; display: block; width: 100%; text-align: center; top: 110px;}

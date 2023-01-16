@@ -1,32 +1,487 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.umd.js" integrity="sha512-t41WshQCxr9T3SWH3DBZoDnAT9gfVLtQS+NKO60fdAwScoB37rXtdxT/oKe986G0BFnP4mtGzXxuYpHrMoMJLA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.umd.min.js" integrity="sha512-KTyzZ0W6S8dUq9WIt8fSflj2ArYRGcGNIU5QcB1skGGd1EPFMupHZSexEsFFX18tZK4eO0iGGSZGuyrNIqjV8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.js"></script>
 <!-- Services-->
-<section class="page-section" id="company_info">
-    <div class="container">
-    <table class="rwd-table">
-        <tbody>
-        <tr>
-            <th>SYMBOL</th>
-            <th>Name</th>
-            <th>Now Price(KRW)</th>
-            <th>Volume Change(24H)</th>
-            <th>Market Cap</th>
-        </tr>
-        {% for market in market_list %}
-            <tr>
-            <td data-th="SYMBOL">{{ market.symbol }}</td>
-            <td data-th="Name">{{ market.name }}</td>
-            <td data-th="Now Price(KRW)">{{ market.KRW }}</td>
-            <td data-th="Volume Change(24H)">{{ market.volume_change_24h }}</td>
-            <td data-th="Market Cap">{{ market.market_cap }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<header class="masthead">
+<section class="page-section" id="notice_board">
+<!-- TradingView Widget BEGIN -->
+<div class="container" style="background-color: white">
+    <div class="text-center category-title">
+        <h3 class="section-heading text-uppercase">Cryptocurrency</h3>
+        <h3 class="section-subheading text-muted">Information</h3>
+    </div>
+    <div class="row border">
+        <div class="col-md-8" style="border-right: gray solid; border-bottom: black">
+            <div class="row">
+              <div class="col-1 text-center" style="margin-right: 10px">
+                      <img src="{% static 'assets/img/symbol/bit.png' %}" alt="imgArr[]" width="32px" height="42px" border="0px" style="padding-top: 10px" />
+              </div>
+              <div class="col-3">
+                  <div class="row rank_symbol_row">
+                      <div class="col-md-12 text-start rank_symbol">
+                          BIT
+                      </div>
+                      <div class="col-md-12 text-start">
+                          비트코인
+                      </div>
+                  </div>
+              </div>
+                  <div class="col-sm" style= "margin-top: 10px">
+                    <div class="row">
+                        <div class="col-3 market_info">
+                            <div class="col-12 market_title">Price</div>
+                            <div class="col-12 market_content">{{ market_info.price }}</div>
+                        </div>
+                        <div class="col-5 market_info">
+                            <div class="col-12 market_title">Market Cap</div>
+                            <div class="col-12 market_content">{{ market_info.volume_change_24h }}</div>
+                        </div>
+                        <div class="col-4 market_info">
+                            <div class="col-12 market_title">24Hr Volume</div>
+                            <div class="col-12 market_content">{{ market_info.market_cap }}</div>
+                        </div>
+                    </div>
+                  </div>
+                <div class="tab-content" id="nav-tabContent" style="border-top: gray solid">
+                <div class="tab-pane fade show active" id="bit" role="tabpanel" aria-labelledby="nav-bit-tab">
+                    <nav>
+                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-rank-tab" data-bs-toggle="tab" data-bs-target="#rank" type="button" role="tab" aria-controls="nav-rank" aria-selected="true">등급</button>
+                        <button class="nav-link" id="nav-chart-tab" data-bs-toggle="tab" data-bs-target="#chart" type="button" role="tab" aria-controls="nav-chart" aria-selected="false">차트</button>
+                        <button class="nav-link" id="nav-announce-tab" data-bs-toggle="tab" data-bs-target="#announce" type="button" role="tab" aria-controls="nav-announce" aria-selected="false">정보</button>
+                        <button class="nav-link" id="nav-info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="nav-info" aria-selected="false">공시</button>
+                      </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                      <div class="tab-pane fade show active" id="rank" role="tabpanel" aria-labelledby="nav-rank-tab">
+                          <div class="row">
+                              <div class="col-md-6">
+                                      <div style="align-items : center; color: #646EFF;font-weight: bold; font-size: 30px">AAA</div>
+                              </div>
+                              <div class="col-md-6">
+                                    <canvas id="bit_radar" width="150" height="150"></canvas>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="tab-pane fade" id="chart" role="tabpanel" aria-labelledby="nav-chart-tab">
+                        <div class="tradingview-widget-container">
+                          <div id="tradingview_5e7f0"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                            <script type="text/javascript">
+                                    new TradingView.MediumWidget(
+                                    {
+                                    "symbols": [
+                                    [
+                                      "BTC",
+                                      "BINANCE:BTCUSDT|12M"
+                                    ]
+                                    ],
+                                    "chartOnly": false,
+                                    "width": "100%",
+                                    "height": 500,
+                                    "locale": "kr",
+                                    "colorTheme": "light",
+                                    "autosize": true,
+                                    "showVolume": false,
+                                    "hideDateRanges": false,
+                                    "hideMarketStatus": false,
+                                    "scalePosition": "right",
+                                    "scaleMode": "Normal",
+                                    "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+                                    "fontSize": "10",
+                                    "noTimeScale": false,
+                                    "valuesTracking": "1",
+                                    "chartType": "line",
+                                    "lineWidth": 1,
+                                    "container_id": "tradingview_5e7f0"
+                                    }
+                                    );
+                                    </script>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade" id="announce" role="tabpanel" aria-labelledby="nav-announce-tab">
+                            asdflksjadfkl
+                      </div>
+                      <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="nav-info-tab">
+                            asdflksjadfkl
+                      </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="eth" role="tabpanel" aria-labelledby="nav-eth-tab">
+                    <nav>
+                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-eth-rank-tab" data-bs-toggle="tab" data-bs-target="#eth_rank" type="button" role="tab" aria-controls="nav-eth-rank" aria-selected="true">등급</button>
+                        <button class="nav-link" id="nav-eth-chart-tab" data-bs-toggle="tab" data-bs-target="#eth_chart" type="button" role="tab" aria-controls="nav-eth-chart" aria-selected="false">차트</button>
+                        <button class="nav-link" id="nav-eth-announce-tab" data-bs-toggle="tab" data-bs-target="#eth_announce" type="button" role="tab" aria-controls="nav-eth-announce" aria-selected="false">정보</button>
+                        <button class="nav-link" id="nav-eth-info-tab" data-bs-toggle="tab" data-bs-target="#eth_info" type="button" role="tab" aria-controls="nav-eth-info" aria-selected="false">공시</button>
+                      </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                      <div class="tab-pane fade show active" id="eth_rank" role="tabpanel" aria-labelledby="nav-eth-rank-tab">
+                          <div class="row">
+                              <div class="col-6" style="border: red solid">
+                                      <div class="align-middle">AA</div>
+                              </div>
+                              <div class="col-6">
+                                    <canvas id="eth_radar" width="150" height="150"></canvas>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="tab-pane fade" id="eth_chart" role="tabpanel" aria-labelledby="nav-eth-chart-tab">
+                        <div class="tradingview-widget-container">
+                          <div id="tradingview_f64d6"></div>
+                          <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                          <script type="text/javascript">
+                          new TradingView.MediumWidget(
+                              {
+                              "symbols": [
+                                [
+                                  "eth",
+                                  "BINANCE:ETHUSDT|12M"
+                                ]
+                              ],
+                              "chartOnly": false,
+                                        "width": "100%",
+                                        "height": 500,
+                              "locale": "kr",
+                              "colorTheme": "light",
+                              "autosize": false,
+                              "showVolume": false,
+                              "hideDateRanges": false,
+                              "hideMarketStatus": false,
+                              "scalePosition": "right",
+                              "scaleMode": "Normal",
+                              "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+                              "fontSize": "10",
+                              "noTimeScale": false,
+                              "valuesTracking": "1",
+                              "changeMode": "price-and-percent",
+                              "chartType": "line",
+                              "lineWidth": 1,
+                              "container_id": "tradingview_e6dfa",
+                            }
+                          );
+                          </script>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade" id="eth_announce" role="tabpanel" aria-labelledby="nav-eth-announce-tab">
+                            1
+                      </div>
+                      <div class="tab-pane fade" id="#eth_info" role="tabpanel" aria-labelledby="nav-eth-info-tab">
+                            2
+                      </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="xrp" role="tabpanel" aria-labelledby="nav-xrp-tab">
+                    <nav>
+                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-xrp-rank-tab" data-bs-toggle="tab" data-bs-target="#xrp_rank" type="button" role="tab" aria-controls="nav-xrp-rank" aria-selected="true">등급</button>
+                        <button class="nav-link" id="nav-xrp-chart-tab" data-bs-toggle="tab" data-bs-target="#xrp_chart" type="button" role="tab" aria-controls="nav-xrp-chart" aria-selected="false">차트</button>
+                        <button class="nav-link" id="nav-xrp-announce-tab" data-bs-toggle="tab" data-bs-target="#xrp_announce" type="button" role="tab" aria-controls="nav-xrp-announce" aria-selected="false">정보</button>
+                        <button class="nav-link" id="nav-xrp-info-tab" data-bs-toggle="tab" data-bs-target="#xrp_info" type="button" role="tab" aria-controls="nav-xrp-info" aria-selected="false">공시</button>
+                      </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                      <div class="tab-pane fade show active" id="xrp_rank" role="tabpanel" aria-labelledby="nav-xrp-rank-tab">
+                          <div class="row">
+                              <div class="col-6" style="border: red solid">
+                                      <div class="align-middle">A</div>
+                              </div>
+                              <div class="col-6">
+                                    <canvas id="xrp_radar" width="150" height="150"></canvas>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="tab-pane fade" id="xrp_chart" role="tabpanel" aria-labelledby="nav-xrp-chart-tab">
+                        <div class="tradingview-widget-container">
+                          <div id="tradingview_95745"></div>
+                          <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                          <script type="text/javascript">
+                          new TradingView.MediumWidget(
+                          {
+                          "symbols": [
+                            [
+                              "xrp",
+                              "BINANCE:XRPUSDT|12M"
+                            ]
+                          ],
+                          "chartOnly": false,
+                          "width": "100%",
+                          "height": "500",
+                          "locale": "kr",
+                          "colorTheme": "light",
+                          "autosize": false,
+                          "showVolume": false,
+                          "hideDateRanges": false,
+                          "hideMarketStatus": false,
+                          "scalePosition": "right",
+                          "scaleMode": "Normal",
+                          "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+                          "fontSize": "10",
+                          "noTimeScale": false,
+                          "valuesTracking": "1",
+                          "changeMode": "price-and-percent",
+                          "chartType": "line",
+                                "lineWidth": 1,
+                        "container_id": "tradingview_e6dfa",
+                        }
+                          );
+                          </script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                          </div>
+                      </div>
+                      <div class="tab-pane fade" id="xrp_announce" role="tabpanel" aria-labelledby="nav-xrp-announce-tab">
+                            3
+                      </div>
+                      <div class="tab-pane fade" id="xrp_info" role="tabpanel" aria-labelledby="nav-xrp-info-tab">
+                            4
+                      </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-3">
+              <h5 style="padding-top: 10px">평가자산</h5>
+              <div class="row">
+                <div class="flex-column-reverse">
+                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                      <button class="nav-link active btn-block" id="bit" data-bs-toggle="pill" data-bs-target="#bit" type="button" role="tab" aria-controls="v-pills-bit" aria-selected="true">
+                          <div class="row">
+                              <div class="col-2">
+                                  <img src="{% static 'assets/img/symbol/bit.png' %}" alt="imgArr[]" width="32px" height="42px" border="0px" style="padding-top: 10px" />
+                              </div>
+                              <div class="col">
+                                  <div class="row rank_symbol_row">
+                                      <div class="col-md-12 text-start rank_symbol">
+                                          BIT
+                                      </div>
+                                      <div class="col-md-12 text-start">
+                                          비트코인
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col rank_text" style="margin-top: 10px">
+                                  <span style="font-size: 20px;">AAA</span>
+                              </div>
+                          </div>
+                      </button>
+                      <button class="nav-link btn-block" id="eth" data-bs-toggle="pill" data-bs-target="#eth" type="button" role="tab" aria-controls="v-pills-bit" aria-selected="true">
+                          <div class="row">
+                              <div class="col-2">
+                                  <img src="{% static 'assets/img/symbol/eth.png' %}" alt="imgArr[]" width="32px" height="42px" border="0px" style="padding-top: 10px" />
+                              </div>
+                              <div class="col">
+                                  <div class="row rank_symbol_row">
+                                      <div class="col-md-12 text-start rank_symbol">
+                                          ETH
+                                      </div>
+                                      <div class="col-md-12 text-start">
+                                          이더리움
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col rank_text" style= "margin-top: 10px">
+                                  <span style="font-size: 20px;">AA+</span>
+                              </div>
+                          </div>
+                      </button>
+                      <button class="nav-link btn-block" id="xrp" data-bs-toggle="pill" data-bs-target="#xrp" type="button" role="tab" aria-controls="v-pills-bit" aria-selected="true">
+                          <div class="row">
+                              <div class="col-2">
+                                  <img src="{% static 'assets/img/symbol/xrp.png' %}" alt="imgArr[]" width="32px" height="42px" border="0px" style="padding-top: 10px" />
+                              </div>
+                              <div class="col">
+                                  <div class="row rank_symbol_row">
+                                      <div class="col-md-12 text-start rank_symbol">
+                                          XRP
+                                      </div>
+                                      <div class="col-md-12 text-start">
+                                          리플
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col rank_text" style= "margin-top: 10px">
+                                  <span style="font-size: 20px">A</span>
+                              </div>
+                          </div>
+                      </button>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
     </div>
 </section>
+
+</header>
+<script>
+
+
+var ctx = document.getElementById('bit_radar').getContext('2d');
+var bit_radar = new Chart(ctx, {
+type: 'radar',
+  data: {
+	  labels: [
+	    'Technology',
+	    'Token Economics',
+	    'Milestone & Progress',
+	    'Financial Sustainability',
+        'Community',
+        'Qualitative'
+	  ],
+	  datasets: [{
+	    label: 'BITCOIN',
+	    data: [3, 3, 5, 4, 3, 1],
+        fill: false,
+	    backgroundColor: 'rgba(178, 203, 240, 0.5)',
+	    borderColor: '#646EFF',
+	    {#pointBackgroundColor: 'rgb(255, 99, 132)',#}
+	    pointBorderColor: '#fff',
+	    pointHoverBackgroundColor: '#fff',
+	    pointHoverBorderColor: '#646EFF'
+	  }]
+  },
+  options: {
+      legend: {
+        display: false
+    },
+    plugins:false,
+    elements: {
+      line: {
+        borderWidth: 4
+      }
+    },
+    scale:{
+      ticks: {
+      {#beginAtZero: true,#}
+      min: 0,
+      max: 5,
+      stepSize: 1
+      }
+    }
+  }
+});
+
+var ctx = document.getElementById('eth_radar').getContext('2d');
+var eth_radar = new Chart(ctx, {
+type: 'radar',
+  data: {
+	  labels: [
+	    'Technology',
+	    'Token Economics',
+	    'Milestone & Progress',
+	    'Financial Sustainability',
+        'Community',
+        'Qualitative'
+	  ],
+	  datasets: [{
+	    label: 'ETH',
+	    data: [3, 3, 5, 4, 3, 1],
+	    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+	    borderColor: 'rgb(255,99,132)',
+	    {#pointBackgroundColor: 'rgb(255, 99, 132)',#}
+	    pointBorderColor: '#fff',
+	    pointHoverBackgroundColor: '#fff',
+	    pointHoverBorderColor: 'rgb(255, 99, 132)'
+	  }]
+  },
+  options: {
+      legend: {
+        display: false
+    },
+    plugins:false,
+    elements: {
+      line: {
+        borderWidth: 4
+      }
+    },
+    scale:{
+      ticks: {
+      beginAtZero: true,
+      min: 0,
+      max: 5,
+      }
+    }
+  }
+});
+
+var ctx = document.getElementById('xrp_radar').getContext('2d');
+var xrp_radar = new Chart(ctx, {
+type: 'radar',
+  data: {
+	  labels: [
+	    '1',
+	    '2',
+	    '3',
+	    '4',
+        '5',
+        '6'
+	  ],
+	  datasets: [{
+	    label: 'XRP',
+	    data: [3, 5, 3, 3, 5, 4],
+	    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+	    borderColor: 'rgb(255,99,132)',
+	    {#pointBackgroundColor: 'rgb(255, 99, 132)',#}
+	    pointBorderColor: '#fff',
+	    pointHoverBackgroundColor: '#fff',
+	    pointHoverBorderColor: 'rgb(255, 99, 132)'
+	  }]
+  },
+  options: {
+      legend: {
+        display: false
+    },
+    plugins:false,
+    elements: {
+      line: {
+        borderWidth: 4
+      }
+    },
+    scale:{
+      ticks: {
+      beginAtZero: true,
+      min: 0,
+      max: 10,
+      }
+    }
+  }
+});
+
+var chart = new Chart(document.getElementById('myChart2').getContext('2d'), {
+  type: 'doughnut',
+  data: {
+      labels: [
+        "Red",
+        "Blue"
+      ],
+  datasets: [
+    {
+      data: [50, 50],
+      backgroundColor: [
+        "#646EFF",
+        "#36A2EB",
+      ],
+      hoverBackgroundColor: [
+        "#646EFF",
+        "#36A2EB",
+      ]
+    }]
+    },
+  options: {
+    responsive: true,
+    legend: {
+      display: false
+    }
+  }
+});
+
+
+</script>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->

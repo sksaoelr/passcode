@@ -22,8 +22,15 @@ urlpatterns = [
     # Digital Assets
     path('cryptocurrency_info/',
          category_veiws.cryptocurrency_info, name='cryptocurrency_info'),
+
+    # path('cryptocurrency_info/<str:symbol>',
+    #      category_veiws.cryptocurrency_info, name='cryptocurrency_info')
+
     path('ntf_info/',
          category_veiws.nft_info, name='nft_info'),
+    # path('temp/',
+    #      category_veiws.temp, name='temp'),
+
     # Announce
     path('notice_board/',
          category_veiws.notice_board, name='notice_board'),
