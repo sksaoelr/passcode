@@ -24,7 +24,7 @@
                       <div class="col-md-12 text-start rank_symbol">
                           BIT
                       </div>
-                      <div class="col-md-12 text-start">
+                      <div class="col-md-12 text-start" style="color:black">
                           비트코인
                       </div>
                   </div>
@@ -59,10 +59,11 @@
                       <div class="tab-pane fade show active" id="rank" role="tabpanel" aria-labelledby="nav-rank-tab">
                           <div class="row">
                               <div class="col-md-6">
-                                      <div style="align-items : center; color: #646EFF;font-weight: bold; font-size: 30px">AAA</div>
+                                   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+                                   <canvas id="bit_Chart"></canvas>
                               </div>
                               <div class="col-md-6">
-                                    <canvas id="bit_radar" width="150" height="150"></canvas>
+                                    <canvas id="bit_radar"></canvas>
                               </div>
                           </div>
                       </div>
@@ -245,7 +246,7 @@
             </div>
             </div>
             <div class="col-md-3">
-              <h5 style="padding-top: 10px">평가자산</h5>
+              <h5 style="padding-top: 10px;color:black">평가자산</h5>
               <div class="row">
                 <div class="flex-column-reverse">
                     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -259,7 +260,7 @@
                                       <div class="col-md-12 text-start rank_symbol">
                                           BIT
                                       </div>
-                                      <div class="col-md-12 text-start">
+                                      <div class="col-md-12 text-start" style="color:black">
                                           비트코인
                                       </div>
                                   </div>
@@ -279,7 +280,7 @@
                                       <div class="col-md-12 text-start rank_symbol">
                                           ETH
                                       </div>
-                                      <div class="col-md-12 text-start">
+                                      <div class="col-md-12 text-start" style="color:black">
                                           이더리움
                                       </div>
                                   </div>
@@ -299,7 +300,7 @@
                                       <div class="col-md-12 text-start rank_symbol">
                                           XRP
                                       </div>
-                                      <div class="col-md-12 text-start">
+                                      <div class="col-md-12 text-start" style="color:black">
                                           리플
                                       </div>
                                   </div>
@@ -320,6 +321,57 @@
 </header>
 <script>
 
+const originalDoughnutDraw = Chart.controllers.doughnut.prototype.draw;
+
+Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
+  draw: function() {
+    const chart = this.chart;
+    const {
+      width,
+      height,
+      ctx,
+      config
+    } = chart.chart;
+
+    const {
+      datasets
+    } = config.data;
+
+    const text = "AAA";
+    let x, y, mid;
+
+    originalDoughnutDraw.apply(this, arguments);
+
+    const fontSize = (height / 100).toFixed(2);
+<!--    ctx.font = fontSize + "em Lato, sans-serif"-->
+    ctx.font = 'bolder 35pt sans-serif';
+    ctx.textBaseline = "top";
+
+
+    x = Math.round((width - ctx.measureText(text).width) / 2);
+    y = (height / 2.3) - fontSize;
+    ctx.fillStyle = "#646EFF"
+    ctx.fillText(text, x, y);
+    mid = x + ctx.measureText(text).width / 2;
+  }
+});
+
+
+var context = document.getElementById('bit_Chart').getContext('2d');
+var percent_value = 60;
+var chart = new Chart(context, {
+  type: 'doughnut',
+  data: {
+    datasets: [{
+      label: false,
+      data: [percent_value, 100 - percent_value],
+      backgroundColor: ['#646EFF', '#ededed']
+    }]
+  },
+  options: {cutoutPercentage:80}
+});
+
+
 
 var ctx = document.getElementById('bit_radar').getContext('2d');
 var bit_radar = new Chart(ctx, {
@@ -336,10 +388,8 @@ type: 'radar',
 	  datasets: [{
 	    label: 'BITCOIN',
 	    data: [3, 3, 5, 4, 3, 1],
-        fill: false,
 	    backgroundColor: 'rgba(178, 203, 240, 0.5)',
 	    borderColor: '#646EFF',
-	    {#pointBackgroundColor: 'rgb(255, 99, 132)',#}
 	    pointBorderColor: '#fff',
 	    pointHoverBackgroundColor: '#fff',
 	    pointHoverBorderColor: '#646EFF'
@@ -357,10 +407,10 @@ type: 'radar',
     },
     scale:{
       ticks: {
-      {#beginAtZero: true,#}
       min: 0,
       max: 5,
-      stepSize: 1
+      stepSize: 1,
+      display: false,
       }
     }
   }

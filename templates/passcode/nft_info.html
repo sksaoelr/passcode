@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-<script src="https://chartjs-plugin-doughnutlabel.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.umd.js" integrity="sha512-t41WshQCxr9T3SWH3DBZoDnAT9gfVLtQS+NKO60fdAwScoB37rXtdxT/oKe986G0BFnP4mtGzXxuYpHrMoMJLA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.umd.min.js" integrity="sha512-KTyzZ0W6S8dUq9WIt8fSflj2ArYRGcGNIU5QcB1skGGd1EPFMupHZSexEsFFX18tZK4eO0iGGSZGuyrNIqjV8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.js"></script>
@@ -11,7 +11,8 @@
 
 <div class="row">
   <div class="col-md" style="border: red solid">
-      <canvas id="eth_radar"></canvas>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <canvas id="bit_Chart"></canvas>
   </div>
   <div class="col-md">
         <canvas id="marksChart" width="150" height="150"></canvas>
@@ -21,51 +22,57 @@
 
 <!-- Bootstrap core JS-->
 <script>
-var ctx = document.getElementById('eth_radar').getContext('2d');
-var myDoughnutChart = new Chart(ctx, {
-  type: 'doughnut',
-  data: data,
-  options: {
-    plugins: {
-      doughnutlabel: {
-        labels: [
-          {
-            text: 'The title',
-            font: {
-              size: '60'
-            }
-          },
-          {
-            text: getTotal,
-            font: {
-              size: '50'
-            },
-            color: 'grey'
-          },
-          {
-            text: '$100.000',
-            font: {
-              size: '30'
-            },
-            color: 'red'
-          },
-          {
-            text: '95%',
-            font: {
-              size: '45'
-            },
-          color: 'green'
-          }
-        ]
-      }
-    }
+
+const originalDoughnutDraw = Chart.controllers.doughnut.prototype.draw;
+
+Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
+  draw: function() {
+    const chart = this.chart;
+    const {
+      width,
+      height,
+      ctx,
+      config
+    } = chart.chart;
+
+    const {
+      datasets
+    } = config.data;
+
+    const text = "AAA";
+    let x, y, mid;
+
+    originalDoughnutDraw.apply(this, arguments);
+
+    const fontSize = (height / 100).toFixed(2);
+    ctx.font = fontSize + "em Lato, sans-serif"
+    ctx.font = 'bolder 35pt sans-serif';
+    ctx.textBaseline = "top";
+
+
+    x = Math.round((width - ctx.measureText(text).width) / 2);
+    y = (height / 2.3) - fontSize;
+    ctx.fillStyle = "#646EFF"
+    ctx.fillText(text, x, y);
+    mid = x + ctx.measureText(text).width / 2;
   }
 });
 
-var getTotal = function(myDoughnutChart) {
-	var sum = myDoughnutChart.config.data.datasets[0].data.reduce((a, b) => a + b, 0);
-	return `Total: ${sum}`;
-}
+
+var context = document.getElementById('bit_Chart').getContext('2d');
+var percent_value = 60;
+var chart = new Chart(context, {
+  type: 'doughnut',
+  data: {
+    datasets: [{
+      label: false,
+      data: [percent_value, 100 - percent_value],
+      backgroundColor: ['#646EFF', '#ededed']
+    }]
+  },
+  options: {cutoutPercentage:80}
+});
+
 
 
 var marksCanvas = document.getElementById("marksChart");
