@@ -14,39 +14,41 @@
         <h3 class="section-subheading text-muted">Information</h3>
     </div>
     <div class="row border">
-        <div class="col-md-8" style="border-right: gray solid; border-bottom: black">
+        <div class="col-md-8 border-end">
             <div class="row">
-              <div class="col-1 text-center" style="margin-right: 10px;">
-                      <img src="{% static 'assets/img/symbol/bit.png' %}" alt="imgArr[]" width="32px" height="42px" border="0px" style="padding-top: 10px" />
-              </div>
-              <div class="col-3">
-                  <div class="row rank_symbol_row">
-                      <div class="col-md-12 text-start rank_symbol">
-                          BIT
-                      </div>
-                      <div class="col-md-12 text-start" style="color:black">
-                          비트코인
-                      </div>
-                  </div>
-              </div>
-              <div class="col-sm" style= "margin-top: 10px">
-                <div class="row">
-                    <div class="col-3 market_info">
-                        <div class="col-12 market_title">Price</div>
-                        <div class="col-12 market_content">{{ market_info.price }}</div>
-                    </div>
-                    <div class="col-5 market_info">
-                        <div class="col-12 market_title">Market Cap</div>
-                        <div class="col-12 market_content">{{ market_info.volume_change_24h }}</div>
-                    </div>
-                    <div class="col-4 market_info">
-                        <div class="col-12 market_title">24Hr Volume</div>
-                        <div class="col-12 market_content">{{ market_info.market_cap }}</div>
-                    </div>
-                </div>
-              </div>
-              <div class="tab-content" id="nav-tabContent" style="border-top: gray solid">
+              <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="bit" role="tabpanel" aria-labelledby="nav-bit-tab">
+                    <div class="row border-bottom border-dark">
+                      <div class="col-1 text-center" style="margin-right: 10px;">
+                        <img src="{% static 'assets/img/symbol/bit.png' %}" alt="imgArr[]" width="32px" height="42px" border="0px" style="padding-top: 10px" />
+                      </div>
+                      <div class="col-3">
+                          <div class="row rank_symbol_row">
+                              <div class="col-md-12 text-start rank_symbol">
+                                  BIT
+                              </div>
+                              <div class="col-md-12 text-start" style="color:black">
+                                  비트코인
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm" style= "margin-top: 10px">
+                        <div class="row">
+                            <div class="col-3 market_info">
+                                <div class="col-12 market_title">Price</div>
+                                <div class="col-12 market_content">{{ market_info.bit_price }}</div>
+                            </div>
+                            <div class="col-5 market_info">
+                                <div class="col-12 market_title">Market Cap</div>
+                                <div class="col-12 market_content">{{ market_info.bit_volume_change_24h }}</div>
+                            </div>
+                            <div class="col-4 market_info">
+                                <div class="col-12 market_title">24Hr Volume</div>
+                                <div class="col-12 market_content">{{ market_info.bit_market_cap }}</div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
                     <nav>
                       <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist">
                         <button class="nav-link active top_nav" id="nav-rank-tab" data-bs-toggle="tab" data-bs-target="#rank" type="button" role="tab" aria-controls="nav-rank" aria-selected="true">Rating</button>
@@ -58,7 +60,10 @@
                     <div class="tab-content" id="nav-tabContent">
                       <div class="tab-pane fade show active" id="rank" role="tabpanel" aria-labelledby="nav-rank-tab">
                           <div class="row">
-                              <div class="col-md-6 border-bottom" style="padding-bottom: 10px">
+                              <div class="col-md-6 border-end" style="padding-bottom: 10px">
+                                   <div class="grade-chart">
+                                    <p class="chart_title text-left">Grade</p>
+                                   </div>
                                    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
                                    <canvas id="bit_Chart"></canvas>
                                    <script>
@@ -84,7 +89,7 @@
 
                                             const fontSize = (height / 100).toFixed(2);
                                         <!--    ctx.font = fontSize + "em Lato, sans-serif"-->
-                                            ctx.font = 'italic bolder 35pt sans-serif';
+                                            ctx.font = 'italic bolder 30pt sans-serif';
                                             ctx.textBaseline = "top";
 
 
@@ -112,7 +117,10 @@
                                         });
                                    </script>
                               </div>
-                              <div class="col-md-6 border-bottom" style="padding-bottom: 10px">
+                              <div class="col-md-6" style="padding-bottom: 10px">
+                                 <div class="grade-chart">
+                                    <p class="chart_title text-left">Itemized evaluation</p>
+                                 </div>
                                     <canvas id="bit_radar"></canvas>
                               </div>
                           </div>
@@ -188,18 +196,52 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="eth" role="tabpanel" aria-labelledby="nav-eth-tab">
+                    <div class="row border-bottom border-dark">
+                      <div class="col-1 text-center" style="margin-right: 10px;">
+                        <img src="{% static 'assets/img/symbol/eth.png' %}" alt="imgArr[]" width="32px" height="42px" border="0px" style="padding-top: 10px" />
+                      </div>
+                      <div class="col-3">
+                          <div class="row rank_symbol_row">
+                              <div class="col-md-12 text-start rank_symbol">
+                                  ETH
+                              </div>
+                              <div class="col-md-12 text-start" style="color:black">
+                                  이더리움
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm" style= "margin-top: 10px">
+                        <div class="row">
+                            <div class="col-3 market_info">
+                                <div class="col-12 market_title">Price</div>
+                                <div class="col-12 market_content">{{ market_info.eth_price }}</div>
+                            </div>
+                            <div class="col-5 market_info">
+                                <div class="col-12 market_title">Market Cap</div>
+                                <div class="col-12 market_content">{{ market_info.eth_volume_change_24h }}</div>
+                            </div>
+                            <div class="col-4 market_info">
+                                <div class="col-12 market_title">24Hr Volume</div>
+                                <div class="col-12 market_content">{{ market_info.eth_market_cap }}</div>
+                            </div>
+                        </div>
+                     </div>
+                    </div>
                     <nav>
-                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-eth-rank-tab" data-bs-toggle="tab" data-bs-target="#eth_rank" type="button" role="tab" aria-controls="nav-eth-rank" aria-selected="true">등급</button>
-                        <button class="nav-link" id="nav-eth-chart-tab" data-bs-toggle="tab" data-bs-target="#eth_chart" type="button" role="tab" aria-controls="nav-eth-chart" aria-selected="false">차트</button>
-                        <button class="nav-link" id="nav-eth-announce-tab" data-bs-toggle="tab" data-bs-target="#eth_announce" type="button" role="tab" aria-controls="nav-eth-announce" aria-selected="false">정보</button>
-                        <button class="nav-link" id="nav-eth-info-tab" data-bs-toggle="tab" data-bs-target="#eth_info" type="button" role="tab" aria-controls="nav-eth-info" aria-selected="false">공시</button>
+                      <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist">
+                        <button class="nav-link active top_nav" id="nav-eth-rank-tab" data-bs-toggle="tab" data-bs-target="#eth_rank" type="button" role="tab" aria-controls="nav-eth-rank" aria-selected="true">Rating</button>
+                        <button class="nav-link top_nav" id="nav-eth-chart-tab" data-bs-toggle="tab" data-bs-target="#eth_chart" type="button" role="tab" aria-controls="nav-eth-chart" aria-selected="false">Chart</button>
+                        <button class="nav-link top_nav" id="nav-eth-announce-tab" data-bs-toggle="tab" data-bs-target="#eth_announce" type="button" role="tab" aria-controls="nav-eth-announce" aria-selected="false">Info</button>
+                        <button class="nav-link top_nav" id="nav-eth-info-tab" data-bs-toggle="tab" data-bs-target="#eth_info" type="button" role="tab" aria-controls="nav-eth-info" aria-selected="false">Disclosure</button>
                       </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                       <div class="tab-pane fade show active" id="eth_rank" role="tabpanel" aria-labelledby="nav-eth-rank-tab">
                           <div class="row">
-                              <div class="col-md-6">
+                              <div class="col-md-6 border-end" style="padding-bottom: 10px">
+                                   <div class="grade-chart">
+                                    <p class="chart_title text-left">Grade</p>
+                                   </div>
                                    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
                                    <canvas id="eth_Chart"></canvas>
                                       <script>
@@ -225,7 +267,7 @@
 
                                                 const fontSize = (height / 100).toFixed(2);
                                             <!--    ctx.font = fontSize + "em Lato, sans-serif"-->
-                                                ctx.font = 'italic bolder 35pt sans-serif';
+                                                ctx.font = 'italic bolder 30pt sans-serif';
                                                 ctx.textBaseline = "top";
 
 
@@ -253,8 +295,37 @@
                                             });
                                       </script>
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-md-6" style="padding-bottom: 10px">
+                                 <div class="grade-chart">
+                                    <p class="chart_title text-left">Itemized evaluation</p>
+                                 </div>
                                     <canvas id="eth_radar"></canvas>
+                              </div>
+                              <div class="row">
+                                <div class="col-12 text-start" style="color: black">
+                                   1
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   2
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   3
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   4
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   5
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   6
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   7
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   8
+                                </div>
                               </div>
                           </div>
                       </div>
@@ -304,18 +375,52 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="xrp" role="tabpanel" aria-labelledby="nav-xrp-tab">
+                    <div class="row border-bottom border-dark">
+                      <div class="col-1 text-center" style="margin-right: 10px;">
+                        <img src="{% static 'assets/img/symbol/xrp.png' %}" alt="imgArr[]" width="32px" height="42px" border="0px" style="padding-top: 10px" />
+                      </div>
+                      <div class="col-3">
+                          <div class="row rank_symbol_row">
+                              <div class="col-md-12 text-start rank_symbol">
+                                  XRP
+                              </div>
+                              <div class="col-md-12 text-start" style="color:black">
+                                  리플
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm" style= "margin-top: 10px">
+                        <div class="row">
+                            <div class="col-3 market_info">
+                                <div class="col-12 market_title">Price</div>
+                                <div class="col-12 market_content">{{ market_info.xrp_price }}</div>
+                            </div>
+                            <div class="col-5 market_info">
+                                <div class="col-12 market_title">Market Cap</div>
+                                <div class="col-12 market_content">{{ market_info.xrp_volume_change_24h }}</div>
+                            </div>
+                            <div class="col-4 market_info">
+                                <div class="col-12 market_title">24Hr Volume</div>
+                                <div class="col-12 market_content">{{ market_info.xrp_market_cap }}</div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
                     <nav>
-                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-xrp-rank-tab" data-bs-toggle="tab" data-bs-target="#xrp_rank" type="button" role="tab" aria-controls="nav-xrp-rank" aria-selected="true">등급</button>
-                        <button class="nav-link" id="nav-xrp-chart-tab" data-bs-toggle="tab" data-bs-target="#xrp_chart" type="button" role="tab" aria-controls="nav-xrp-chart" aria-selected="false">차트</button>
-                        <button class="nav-link" id="nav-xrp-announce-tab" data-bs-toggle="tab" data-bs-target="#xrp_announce" type="button" role="tab" aria-controls="nav-xrp-announce" aria-selected="false">정보</button>
-                        <button class="nav-link" id="nav-xrp-info-tab" data-bs-toggle="tab" data-bs-target="#xrp_info" type="button" role="tab" aria-controls="nav-xrp-info" aria-selected="false">공시</button>
+                      <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist">
+                        <button class="nav-link active top_nav" id="nav-xrp-rank-tab" data-bs-toggle="tab" data-bs-target="#xrp_rank" type="button" role="tab" aria-controls="nav-xrp-rank" aria-selected="true">Rating</button>
+                        <button class="nav-link top_nav" id="nav-xrp-chart-tab" data-bs-toggle="tab" data-bs-target="#xrp_chart" type="button" role="tab" aria-controls="nav-xrp-chart" aria-selected="false">Chart</button>
+                        <button class="nav-link top_nav" id="nav-xrp-announce-tab" data-bs-toggle="tab" data-bs-target="#xrp_announce" type="button" role="tab" aria-controls="nav-xrp-announce" aria-selected="false">Info</button>
+                        <button class="nav-link top_nav" id="nav-xrp-info-tab" data-bs-toggle="tab" data-bs-target="#xrp_info" type="button" role="tab" aria-controls="nav-xrp-info" aria-selected="false">Disclosure</button>
                       </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                       <div class="tab-pane fade show active" id="xrp_rank" role="tabpanel" aria-labelledby="nav-xrp-rank-tab">
                           <div class="row">
-                              <div class="col-md-6">
+                              <div class="col-md-6 border-end" style="padding-bottom: 10px">
+                                   <div class="grade-chart">
+                                    <p class="chart_title text-left">Grade</p>
+                                   </div>
                                    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
                                    <canvas id="xrp_Chart"></canvas>
                                    <script>
@@ -342,7 +447,7 @@
 
                                         const fontSize = (height / 100).toFixed(2);
                                     <!--    ctx.font = fontSize + "em Lato, sans-serif"-->
-                                        ctx.font = 'italic bolder 35pt sans-serif';
+                                        ctx.font = 'italic bolder 30pt sans-serif';
                                         ctx.textBaseline = "top";
 
 
@@ -370,8 +475,37 @@
                                     });
                                    </script>
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-md-6" style="padding-bottom: 10px">
+                                 <div class="grade-chart">
+                                    <p class="chart_title text-left">Itemized evaluation</p>
+                                 </div>
                                     <canvas id="xrp_radar"></canvas>
+                              </div>
+                              <div class="row">
+                                <div class="col-12 text-start" style="color: black">
+                                   1
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   2
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   3
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   4
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   5
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   6
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   7
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   8
+                                </div>
                               </div>
                           </div>
                       </div>

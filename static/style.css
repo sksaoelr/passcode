@@ -23,7 +23,7 @@
      color: black;
      font-weight: bold;
      font-family: Arial;
-     padding-top: 10px;
+     /*padding-top: 10px;*/
  }
 
  .nav-fill .nav-link {
@@ -32,12 +32,20 @@
  }
 
  .market_info .market_content {
-     font-size : 15px;
-     /*font-weight: bold;*/
+     font-size : 14px;
+     font-weight: bold;
      color: black;
      font-family: sans-serif;
      padding-bottom: 10px;
  }
+.grade-chart .chart_title{
+    color:black;
+    font-weight: 700;
+    font-family: Arial;
+    font-size: 20px;
+    margin: 1px;
+    text-align: left;
+}
 
  .category-title {
      color: black;

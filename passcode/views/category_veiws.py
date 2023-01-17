@@ -67,7 +67,7 @@ def cryptocurrency_info(request):
     # if request.method == 'GET':
     #     symbol = request.GET['symbol']
     #     print(symbol)
-    url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC&tsyms=USD'
+    url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP&tsyms=USD'
     headers = {
         'Apikey': '05770f67db120460076177af39481e38fe5b46a77563fa33dce00f7c8c469e4d'
     }
@@ -82,15 +82,22 @@ def cryptocurrency_info(request):
     # print(data['DISPLAY']['BTC']['USD'])
     # for in_data in data['DISPLAY']['BTC']['USD']:
     #     print(in_data)
-    in_data = data['DISPLAY']['BTC']['USD']
+    bit_data = data['DISPLAY']['BTC']['USD']
+    eth_data = data['DISPLAY']['ETH']['USD']
+    xrp_data = data['DISPLAY']['XRP']['USD']
     market_info = {
-        'price': in_data['PRICE'],
-        'volume_change_24h': in_data['VOLUME24HOURTO'],
-        'market_cap': in_data['MKTCAP']
+        'bit_price': bit_data['PRICE'],
+        'bit_volume_change_24h': bit_data['VOLUME24HOURTO'],
+        'bit_market_cap': bit_data['MKTCAP'],
+        'eth_price': eth_data['PRICE'],
+        'eth_volume_change_24h': eth_data['VOLUME24HOURTO'],
+        'eth_market_cap': eth_data['MKTCAP'],
+        'xrp_price': xrp_data['PRICE'],
+        'xrp_volume_change_24h': xrp_data['VOLUME24HOURTO'],
+        'xrp_market_cap': xrp_data['MKTCAP']
     }
     # market_info.append(temp_data)
     context = {'market_info': market_info}
-    # print(context)
     # if request.method == 'GET':
     #     symbol = request.GET.get('symbol')
     #     context['symbol'] = symbol
