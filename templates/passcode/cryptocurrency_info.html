@@ -16,7 +16,7 @@
     <div class="row border">
         <div class="col-md-8" style="border-right: gray solid; border-bottom: black">
             <div class="row">
-              <div class="col-1 text-center" style="margin-right: 10px">
+              <div class="col-1 text-center" style="margin-right: 10px;">
                       <img src="{% static 'assets/img/symbol/bit.png' %}" alt="imgArr[]" width="32px" height="42px" border="0px" style="padding-top: 10px" />
               </div>
               <div class="col-3">
@@ -29,42 +29,118 @@
                       </div>
                   </div>
               </div>
-                  <div class="col-sm" style= "margin-top: 10px">
-                    <div class="row">
-                        <div class="col-3 market_info">
-                            <div class="col-12 market_title">Price</div>
-                            <div class="col-12 market_content">{{ market_info.price }}</div>
-                        </div>
-                        <div class="col-5 market_info">
-                            <div class="col-12 market_title">Market Cap</div>
-                            <div class="col-12 market_content">{{ market_info.volume_change_24h }}</div>
-                        </div>
-                        <div class="col-4 market_info">
-                            <div class="col-12 market_title">24Hr Volume</div>
-                            <div class="col-12 market_content">{{ market_info.market_cap }}</div>
-                        </div>
+              <div class="col-sm" style= "margin-top: 10px">
+                <div class="row">
+                    <div class="col-3 market_info">
+                        <div class="col-12 market_title">Price</div>
+                        <div class="col-12 market_content">{{ market_info.price }}</div>
                     </div>
-                  </div>
-                <div class="tab-content" id="nav-tabContent" style="border-top: gray solid">
+                    <div class="col-5 market_info">
+                        <div class="col-12 market_title">Market Cap</div>
+                        <div class="col-12 market_content">{{ market_info.volume_change_24h }}</div>
+                    </div>
+                    <div class="col-4 market_info">
+                        <div class="col-12 market_title">24Hr Volume</div>
+                        <div class="col-12 market_content">{{ market_info.market_cap }}</div>
+                    </div>
+                </div>
+              </div>
+              <div class="tab-content" id="nav-tabContent" style="border-top: gray solid">
                 <div class="tab-pane fade show active" id="bit" role="tabpanel" aria-labelledby="nav-bit-tab">
                     <nav>
-                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-rank-tab" data-bs-toggle="tab" data-bs-target="#rank" type="button" role="tab" aria-controls="nav-rank" aria-selected="true">등급</button>
-                        <button class="nav-link" id="nav-chart-tab" data-bs-toggle="tab" data-bs-target="#chart" type="button" role="tab" aria-controls="nav-chart" aria-selected="false">차트</button>
-                        <button class="nav-link" id="nav-announce-tab" data-bs-toggle="tab" data-bs-target="#announce" type="button" role="tab" aria-controls="nav-announce" aria-selected="false">정보</button>
-                        <button class="nav-link" id="nav-info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="nav-info" aria-selected="false">공시</button>
+                      <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist">
+                        <button class="nav-link active top_nav" id="nav-rank-tab" data-bs-toggle="tab" data-bs-target="#rank" type="button" role="tab" aria-controls="nav-rank" aria-selected="true">Rating</button>
+                        <button class="nav-link top_nav" id="nav-chart-tab" data-bs-toggle="tab" data-bs-target="#chart" type="button" role="tab" aria-controls="nav-chart" aria-selected="false">Chart</button>
+                        <button class="nav-link top_nav" id="nav-announce-tab" data-bs-toggle="tab" data-bs-target="#announce" type="button" role="tab" aria-controls="nav-announce" aria-selected="false">Info</button>
+                        <button class="nav-link top_nav" id="nav-info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="nav-info" aria-selected="false">Disclosure</button>
                       </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                       <div class="tab-pane fade show active" id="rank" role="tabpanel" aria-labelledby="nav-rank-tab">
                           <div class="row">
-                              <div class="col-md-6">
+                              <div class="col-md-6 border-bottom" style="padding-bottom: 10px">
                                    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
                                    <canvas id="bit_Chart"></canvas>
+                                   <script>
+                                        const originalDoughnutDraw_bit = Chart.controllers.doughnut.prototype.draw;
+                                        Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
+                                          draw: function() {
+                                            const chart = this.chart;
+                                            const {
+                                              width,
+                                              height,
+                                              ctx,
+                                              config
+                                            } = chart.chart;
+
+                                            const {
+                                              datasets
+                                            } = config.data;
+
+                                            const bit_text = "AAA";
+                                            let x, y, mid;
+
+                                            originalDoughnutDraw_bit.apply(this, arguments);
+
+                                            const fontSize = (height / 100).toFixed(2);
+                                        <!--    ctx.font = fontSize + "em Lato, sans-serif"-->
+                                            ctx.font = 'italic bolder 35pt sans-serif';
+                                            ctx.textBaseline = "top";
+
+
+                                            x = Math.round((width - ctx.measureText(bit_text).width) / 2);
+                                            y = (height / 2.3) - fontSize;
+                                            ctx.fillStyle = "#646EFF"
+                                            ctx.fillText(bit_text, x, y);
+                                            mid = x + ctx.measureText(bit_text).width / 2;
+                                          }
+                                        });
+
+
+                                        var context = document.getElementById('bit_Chart').getContext('2d');
+                                        var percent_value = 90;
+                                        var chart = new Chart(context, {
+                                          type: 'doughnut',
+                                          data: {
+                                            datasets: [{
+                                              label: false,
+                                              data: [percent_value, 100 - percent_value],
+                                              backgroundColor: ['#646EFF', '#ededed']
+                                            }]
+                                          },
+                                          options: {cutoutPercentage:80}
+                                        });
+                                   </script>
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-md-6 border-bottom" style="padding-bottom: 10px">
                                     <canvas id="bit_radar"></canvas>
                               </div>
+                          </div>
+                          <div class="row">
+                                <div class="col-12 text-start" style="color: black">
+                                   1
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   2
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   3
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   4
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   5
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   6
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   7
+                                </div>
+                                <div class="col-12 text-start" style="color: black">
+                                   8
+                                </div>
                           </div>
                       </div>
                       <div class="tab-pane fade" id="chart" role="tabpanel" aria-labelledby="nav-chart-tab">
@@ -123,11 +199,62 @@
                     <div class="tab-content" id="nav-tabContent">
                       <div class="tab-pane fade show active" id="eth_rank" role="tabpanel" aria-labelledby="nav-eth-rank-tab">
                           <div class="row">
-                              <div class="col-6" style="border: red solid">
-                                      <div class="align-middle">AA</div>
+                              <div class="col-md-6">
+                                   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+                                   <canvas id="eth_Chart"></canvas>
+                                      <script>
+                                          const originalDoughnutDraw_eth = Chart.controllers.doughnut.prototype.draw;
+                                            Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
+                                              draw: function() {
+                                                const chart = this.chart;
+                                                const {
+                                                  width,
+                                                  height,
+                                                  ctx,
+                                                  config
+                                                } = chart.chart;
+
+                                                const {
+                                                  datasets
+                                                } = config.data;
+
+                                                const eth_text = "AA+";
+                                                let x, y, mid;
+
+                                                originalDoughnutDraw_eth.apply(this, arguments);
+
+                                                const fontSize = (height / 100).toFixed(2);
+                                            <!--    ctx.font = fontSize + "em Lato, sans-serif"-->
+                                                ctx.font = 'italic bolder 35pt sans-serif';
+                                                ctx.textBaseline = "top";
+
+
+                                                x = Math.round((width - ctx.measureText(eth_text).width) / 2);
+                                                y = (height / 2.3) - fontSize;
+                                                ctx.fillStyle = "#646EFF"
+                                                ctx.fillText(eth_text, x, y);
+                                                mid = x + ctx.measureText(eth_text).width / 2;
+                                              }
+                                            });
+
+
+                                            var context = document.getElementById('eth_Chart').getContext('2d');
+                                            var percent_value = 70;
+                                            var chart = new Chart(context, {
+                                              type: 'doughnut',
+                                              data: {
+                                                datasets: [{
+                                                  label: false,
+                                                  data: [percent_value, 100 - percent_value],
+                                                  backgroundColor: ['#646EFF', '#ededed']
+                                                }]
+                                              },
+                                              options: {cutoutPercentage:80}
+                                            });
+                                      </script>
                               </div>
-                              <div class="col-6">
-                                    <canvas id="eth_radar" width="150" height="150"></canvas>
+                              <div class="col-md-6">
+                                    <canvas id="eth_radar"></canvas>
                               </div>
                           </div>
                       </div>
@@ -188,11 +315,63 @@
                     <div class="tab-content" id="nav-tabContent">
                       <div class="tab-pane fade show active" id="xrp_rank" role="tabpanel" aria-labelledby="nav-xrp-rank-tab">
                           <div class="row">
-                              <div class="col-6" style="border: red solid">
-                                      <div class="align-middle">A</div>
+                              <div class="col-md-6">
+                                   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+                                   <canvas id="xrp_Chart"></canvas>
+                                   <script>
+                                    const originalDoughnutDraw_xrp = Chart.controllers.doughnut.prototype.draw;
+
+                                    Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
+                                      draw: function() {
+                                        const chart = this.chart;
+                                        const {
+                                          width,
+                                          height,
+                                          ctx,
+                                          config
+                                        } = chart.chart;
+
+                                        const {
+                                          datasets
+                                        } = config.data;
+
+                                        const xrp_text = "A";
+                                        let x, y, mid;
+
+                                        originalDoughnutDraw_xrp.apply(this, arguments);
+
+                                        const fontSize = (height / 100).toFixed(2);
+                                    <!--    ctx.font = fontSize + "em Lato, sans-serif"-->
+                                        ctx.font = 'italic bolder 35pt sans-serif';
+                                        ctx.textBaseline = "top";
+
+
+                                        x = Math.round((width - ctx.measureText(xrp_text).width) / 2);
+                                        y = (height / 2.3) - fontSize;
+                                        ctx.fillStyle = "#646EFF"
+                                        ctx.fillText(xrp_text, x, y);
+                                        mid = x + ctx.measureText(xrp_text).width / 2;
+                                      }
+                                    });
+
+
+                                    var context = document.getElementById('xrp_Chart').getContext('2d');
+                                    var percent_value = 60;
+                                    var chart = new Chart(context, {
+                                      type: 'doughnut',
+                                      data: {
+                                        datasets: [{
+                                          label: false,
+                                          data: [percent_value, 100 - percent_value],
+                                          backgroundColor: ['#646EFF', '#ededed']
+                                        }]
+                                      },
+                                      options: {cutoutPercentage:80}
+                                    });
+                                   </script>
                               </div>
-                              <div class="col-6">
-                                    <canvas id="xrp_radar" width="150" height="150"></canvas>
+                              <div class="col-md-6">
+                                    <canvas id="xrp_radar"></canvas>
                               </div>
                           </div>
                       </div>
@@ -242,136 +421,84 @@
                             4
                       </div>
                     </div>
-                </div>
-            </div>
-            </div>
-            <div class="col-md-3">
-              <h5 style="padding-top: 10px;color:black">평가자산</h5>
-              <div class="row">
-                <div class="flex-column-reverse">
-                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                      <button class="nav-link active btn-block" id="bit" data-bs-toggle="pill" data-bs-target="#bit" type="button" role="tab" aria-controls="v-pills-bit" aria-selected="true">
-                          <div class="row">
-                              <div class="col-2">
-                                  <img src="{% static 'assets/img/symbol/bit.png' %}" alt="imgArr[]" width="32px" height="42px" border="0px" style="padding-top: 10px" />
-                              </div>
-                              <div class="col">
-                                  <div class="row rank_symbol_row">
-                                      <div class="col-md-12 text-start rank_symbol">
-                                          BIT
-                                      </div>
-                                      <div class="col-md-12 text-start" style="color:black">
-                                          비트코인
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col rank_text" style="margin-top: 10px">
-                                  <span style="font-size: 20px;">AAA</span>
-                              </div>
-                          </div>
-                      </button>
-                      <button class="nav-link btn-block" id="eth" data-bs-toggle="pill" data-bs-target="#eth" type="button" role="tab" aria-controls="v-pills-bit" aria-selected="true">
-                          <div class="row">
-                              <div class="col-2">
-                                  <img src="{% static 'assets/img/symbol/eth.png' %}" alt="imgArr[]" width="32px" height="42px" border="0px" style="padding-top: 10px" />
-                              </div>
-                              <div class="col">
-                                  <div class="row rank_symbol_row">
-                                      <div class="col-md-12 text-start rank_symbol">
-                                          ETH
-                                      </div>
-                                      <div class="col-md-12 text-start" style="color:black">
-                                          이더리움
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col rank_text" style= "margin-top: 10px">
-                                  <span style="font-size: 20px;">AA+</span>
-                              </div>
-                          </div>
-                      </button>
-                      <button class="nav-link btn-block" id="xrp" data-bs-toggle="pill" data-bs-target="#xrp" type="button" role="tab" aria-controls="v-pills-bit" aria-selected="true">
-                          <div class="row">
-                              <div class="col-2">
-                                  <img src="{% static 'assets/img/symbol/xrp.png' %}" alt="imgArr[]" width="32px" height="42px" border="0px" style="padding-top: 10px" />
-                              </div>
-                              <div class="col">
-                                  <div class="row rank_symbol_row">
-                                      <div class="col-md-12 text-start rank_symbol">
-                                          XRP
-                                      </div>
-                                      <div class="col-md-12 text-start" style="color:black">
-                                          리플
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col rank_text" style= "margin-top: 10px">
-                                  <span style="font-size: 20px">A</span>
-                              </div>
-                          </div>
-                      </button>
-                    </div>
-                </div>
               </div>
             </div>
         </div>
+        <div class="col-md-3">
+          <h5 style="padding-top: 10px;color:black">평가자산</h5>
+          <div class="row">
+            <div class="flex-column-reverse">
+                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                  <button class="nav-link active btn-block" id="bit" data-bs-toggle="pill" data-bs-target="#bit" type="button" role="tab" aria-controls="v-pills-bit" aria-selected="true">
+                      <div class="row">
+                          <div class="col-2">
+                              <img src="{% static 'assets/img/symbol/bit.png' %}" alt="imgArr[]" width="32px" height="42px" border="0px" style="padding-top: 10px" />
+                          </div>
+                          <div class="col">
+                              <div class="row rank_symbol_row">
+                                  <div class="col-md-12 text-start rank_symbol">
+                                      BIT
+                                  </div>
+                                  <div class="col-md-12 text-start" style="color:black">
+                                      비트코인
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col rank_text" style="margin-top: 10px">
+                              <span style="font-size: 20px;">AAA</span>
+                          </div>
+                      </div>
+                  </button>
+                  <button class="nav-link btn-block" id="eth" data-bs-toggle="pill" data-bs-target="#eth" type="button" role="tab" aria-controls="v-pills-bit" aria-selected="true">
+                      <div class="row">
+                          <div class="col-2">
+                              <img src="{% static 'assets/img/symbol/eth.png' %}" alt="imgArr[]" width="32px" height="42px" border="0px" style="padding-top: 10px" />
+                          </div>
+                          <div class="col">
+                              <div class="row rank_symbol_row">
+                                  <div class="col-md-12 text-start rank_symbol">
+                                      ETH
+                                  </div>
+                                  <div class="col-md-12 text-start" style="color:black">
+                                      이더리움
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col rank_text" style= "margin-top: 10px">
+                              <span style="font-size: 20px;">AA+</span>
+                          </div>
+                      </div>
+                  </button>
+                  <button class="nav-link btn-block" id="xrp" data-bs-toggle="pill" data-bs-target="#xrp" type="button" role="tab" aria-controls="v-pills-bit" aria-selected="true">
+                      <div class="row">
+                          <div class="col-2">
+                              <img src="{% static 'assets/img/symbol/xrp.png' %}" alt="imgArr[]" width="32px" height="42px" border="0px" style="padding-top: 10px" />
+                          </div>
+                          <div class="col">
+                              <div class="row rank_symbol_row">
+                                  <div class="col-md-12 text-start rank_symbol">
+                                      XRP
+                                  </div>
+                                  <div class="col-md-12 text-start" style="color:black">
+                                      리플
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col rank_text" style= "margin-top: 10px">
+                              <span style="font-size: 20px">A</span>
+                          </div>
+                      </div>
+                  </button>
+                </div>
+            </div>
+          </div>
+        </div>
     </div>
+</div>
 </section>
 
 </header>
 <script>
-
-const originalDoughnutDraw = Chart.controllers.doughnut.prototype.draw;
-
-Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
-  draw: function() {
-    const chart = this.chart;
-    const {
-      width,
-      height,
-      ctx,
-      config
-    } = chart.chart;
-
-    const {
-      datasets
-    } = config.data;
-
-    const text = "AAA";
-    let x, y, mid;
-
-    originalDoughnutDraw.apply(this, arguments);
-
-    const fontSize = (height / 100).toFixed(2);
-<!--    ctx.font = fontSize + "em Lato, sans-serif"-->
-    ctx.font = 'bolder 35pt sans-serif';
-    ctx.textBaseline = "top";
-
-
-    x = Math.round((width - ctx.measureText(text).width) / 2);
-    y = (height / 2.3) - fontSize;
-    ctx.fillStyle = "#646EFF"
-    ctx.fillText(text, x, y);
-    mid = x + ctx.measureText(text).width / 2;
-  }
-});
-
-
-var context = document.getElementById('bit_Chart').getContext('2d');
-var percent_value = 60;
-var chart = new Chart(context, {
-  type: 'doughnut',
-  data: {
-    datasets: [{
-      label: false,
-      data: [percent_value, 100 - percent_value],
-      backgroundColor: ['#646EFF', '#ededed']
-    }]
-  },
-  options: {cutoutPercentage:80}
-});
-
-
 
 var ctx = document.getElementById('bit_radar').getContext('2d');
 var bit_radar = new Chart(ctx, {
@@ -387,7 +514,7 @@ type: 'radar',
 	  ],
 	  datasets: [{
 	    label: 'BITCOIN',
-	    data: [3, 3, 5, 4, 3, 1],
+	    data: [4, 4, 5, 4, 3, 4],
 	    backgroundColor: 'rgba(178, 203, 240, 0.5)',
 	    borderColor: '#646EFF',
 	    pointBorderColor: '#fff',
@@ -417,7 +544,7 @@ type: 'radar',
 });
 
 var ctx = document.getElementById('eth_radar').getContext('2d');
-var eth_radar = new Chart(ctx, {
+var bit_radar = new Chart(ctx, {
 type: 'radar',
   data: {
 	  labels: [
@@ -430,13 +557,12 @@ type: 'radar',
 	  ],
 	  datasets: [{
 	    label: 'ETH',
-	    data: [3, 3, 5, 4, 3, 1],
-	    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-	    borderColor: 'rgb(255,99,132)',
-	    {#pointBackgroundColor: 'rgb(255, 99, 132)',#}
+	    data: [3, 4, 5, 4, 3, 4],
+	    backgroundColor: 'rgba(178, 203, 240, 0.5)',
+	    borderColor: '#646EFF',
 	    pointBorderColor: '#fff',
 	    pointHoverBackgroundColor: '#fff',
-	    pointHoverBorderColor: 'rgb(255, 99, 132)'
+	    pointHoverBorderColor: '#646EFF'
 	  }]
   },
   options: {
@@ -451,35 +577,35 @@ type: 'radar',
     },
     scale:{
       ticks: {
-      beginAtZero: true,
       min: 0,
       max: 5,
+      stepSize: 1,
+      display: false,
       }
     }
   }
 });
 
 var ctx = document.getElementById('xrp_radar').getContext('2d');
-var xrp_radar = new Chart(ctx, {
+var bit_radar = new Chart(ctx, {
 type: 'radar',
   data: {
 	  labels: [
-	    '1',
-	    '2',
-	    '3',
-	    '4',
-        '5',
-        '6'
+	    'Technology',
+	    'Token Economics',
+	    'Milestone & Progress',
+	    'Financial Sustainability',
+        'Community',
+        'Qualitative'
 	  ],
 	  datasets: [{
 	    label: 'XRP',
-	    data: [3, 5, 3, 3, 5, 4],
-	    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-	    borderColor: 'rgb(255,99,132)',
-	    {#pointBackgroundColor: 'rgb(255, 99, 132)',#}
+	    data: [3, 3, 2, 3, 3, 1],
+	    backgroundColor: 'rgba(178, 203, 240, 0.5)',
+	    borderColor: '#646EFF',
 	    pointBorderColor: '#fff',
 	    pointHoverBackgroundColor: '#fff',
-	    pointHoverBorderColor: 'rgb(255, 99, 132)'
+	    pointHoverBorderColor: '#646EFF'
 	  }]
   },
   options: {
@@ -494,13 +620,56 @@ type: 'radar',
     },
     scale:{
       ticks: {
-      beginAtZero: true,
       min: 0,
-      max: 10,
+      max: 5,
+      stepSize: 1,
+      display: false,
       }
     }
   }
 });
+
+{#var ctx = document.getElementById('eth_radar').getContext('2d');#}
+{#var eth_radar = new Chart(ctx, {#}
+{#type: 'radar',#}
+{#  data: {#}
+{#	  labels: [#}
+{#	    'Technology',#}
+{#	    'Token Economics',#}
+{#	    'Milestone & Progress',#}
+{#	    'Financial Sustainability',#}
+{#        'Community',#}
+{#        'Qualitative'#}
+{#	  ],#}
+{#	  datasets: [{#}
+{#	    label: 'ETH',#}
+{#	    data: [3, 3, 5, 4, 3, 1],#}
+{#	    backgroundColor: 'rgba(255, 99, 132, 0.2)',#}
+{#	    borderColor: 'rgb(255,99,132)',#}
+	    {#pointBackgroundColor: 'rgb(255, 99, 132)',#}
+{#	    pointBorderColor: '#fff',#}
+{#	    pointHoverBackgroundColor: '#fff',#}
+{#	    pointHoverBorderColor: 'rgb(255, 99, 132)'#}
+{#	  }]#}
+{#  },#}
+{#  options: {#}
+{#      legend: {#}
+{#        display: false#}
+{#    },#}
+{#    plugins:false,#}
+{#    elements: {#}
+{#      line: {#}
+{#        borderWidth: 4#}
+{#      }#}
+{#    },#}
+{#    scale:{#}
+{#      ticks: {#}
+{#      beginAtZero: true,#}
+{#      min: 0,#}
+{#      max: 5,#}
+{#      }#}
+{#    }#}
+{#  }#}
 
 var chart = new Chart(document.getElementById('myChart2').getContext('2d'), {
   type: 'doughnut',

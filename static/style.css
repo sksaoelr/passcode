@@ -14,16 +14,29 @@
  .rank_symbol_row{
      padding-top: 5px;
  }
- rank_symbol_row
 
- .market_info .market_title,
  .rank_symbol_row .col-md-12{
      font-weight: bold;
  }
- .market_info .market_title,
- .market_info .market_content {
+ .market_info .market_title {
      font-size : 15px;
      color: black;
+     font-weight: bold;
+     font-family: Arial;
+     padding-top: 10px;
+ }
+
+ .nav-fill .nav-link {
+      font-weight: bold;
+     font-family: Arial;
+ }
+
+ .market_info .market_content {
+     font-size : 15px;
+     /*font-weight: bold;*/
+     color: black;
+     font-family: sans-serif;
+     padding-bottom: 10px;
  }
 
  .category-title {

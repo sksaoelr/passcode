@@ -4006,6 +4006,14 @@ textarea.form-control-lg {
   /*background-color: blue;*/
 }
 
+.nav-pills .nav-link.active.top_nav{
+  /*color: #fff;*/
+  color: black;
+  background-color: #e2e2e2;
+  /*background-color: blue;*/
+  margin: 10px;
+}
+
 .nav-fill > .nav-link,
 .nav-fill .nav-item {
   flex: 1 1 auto;
