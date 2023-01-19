@@ -9,6 +9,7 @@
  .rank_symbol {
      font-size: 13px;
      color: gray;
+     font-family: italic bolder sans-serif;
  }
 
  .rank_symbol_row{
@@ -17,12 +18,13 @@
 
  .rank_symbol_row .col-md-12{
      font-weight: bold;
+     font-family: italic bolder sans-serif;
  }
  .market_info .market_title {
      font-size : 15px;
      color: black;
      font-weight: bold;
-     font-family: Arial;
+     font-family: italic bolder sans-serif;
      /*padding-top: 10px;*/
  }
 
@@ -35,13 +37,13 @@
      font-size : 14px;
      font-weight: bold;
      color: black;
-     font-family: sans-serif;
+     font-family: italic bolder sans-serif;
      padding-bottom: 10px;
  }
 .grade-chart .chart_title{
     color:black;
     font-weight: 700;
-    font-family: Arial;
+    font-family: italic bolder sans-serif;
     font-size: 20px;
     margin: 1px;
     text-align: left;
@@ -51,5 +53,34 @@
      color: black;
  }
 
- .chart {float: left; width: 33.33%; height: 230px; text-align: center;}
+.chart {float: left; width: 33.33%; height: 230px; text-align: center;}
 .chart span.title{position: relative; display: block; width: 100%; text-align: center; top: 110px;}
+
+.nav .nav-link {
+    font-family: italic bolder sans-serif;
+}
+
+.valued-assets {
+  text-decoration: underline;
+    text-underline-position:under;
+    text-underline-offset : 5px;
+    text-decoration-color: #0c63e4;
+}
+
+.symbol-img {
+    /*border: 1px outset #D3D3D3;*/
+	border-radius:8px;
+    padding: 5px;
+    /*border-style: solid;*/
+    /*border-width: thin;*/
+    /*border-color: #adb5bd;*/
+    border: 1px solid #EEEFF0;
+}
+
+/*.symbol-border {*/
+/*    box-sizing: border-box;*/
+/*    padding: 12px;*/
+/*    border-radius: 16px;*/
+/*    border: 1px solid #EEEFF0;*/
+/*    text-align: center;*/
+/*}*/
