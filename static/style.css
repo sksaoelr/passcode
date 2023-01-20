@@ -127,6 +127,30 @@
     margin-left: -15px;
 }
 
+.radar-progress .content-name{
+    font-size: 12px;
+    /*font-weight: bold;*/
+    padding-bottom: 15px;
+}
+
+.progress-div{
+    /*font-weight: bold;*/
+    padding-bottom: 15px;
+}
+
+/*.radar-progress .progress-bar {*/
+/*    background-color: #646EFF;*/
+/*    !*padding-bottom: 15px;*!*/
+/*}*/
+
+.radar-progress .progress-bar {
+    height: 12px;
+    border-radius: 24px;
+    /*background: linear-gradient(90deg, #1B8BCC 0%, #1C83C1 25%, #206EA4 69%, #245D8C 100%);*/
+    background: linear-gradient(90deg, #a9a9f5 0%, #8d8def 25%, #7979f6 69%, #646EFF 100%);
+    transform: rotate(180deg);
+}
+
 
 /*.symbol-border {*/
 /*    box-sizing: border-box;*/
