@@ -19,9 +19,9 @@
               <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="bit" role="tabpanel" aria-labelledby="nav-bit-tab">
                     <div class="row border-bottom border-dark">
-                      <div class="col-2 text-center title-symbol-img" style="margin-right: 10px">
+                      <div class="col-2 text-center title-symbol-img">
                           <div class = 'symbol-border'>
-                            <img class="symbol-img" src="{% static 'assets/img/symbol/bit.png' %}" alt="imgArr[]" width="42px" height="52px" />
+                            <img class="symbol-img" src="{% static 'assets/img/symbol/bit.png' %}" alt="imgArr[]" width="50px" height="50px" />
                           </div>
                       </div>
                       <div class="col-3 title-symbol-name">
@@ -293,9 +293,9 @@
                 </div>
                 <div class="tab-pane" id="eth" role="tabpanel" aria-labelledby="nav-eth-tab">
                     <div class="row border-bottom border-dark">
-                      <div class="col-2 text-center title-symbol-img" style="margin-right: 10px">
+                      <div class="col-2 text-center title-symbol-img">
                           <div class = 'symbol-border'>
-                            <img class="symbol-img" src="{% static 'assets/img/symbol/eth.png' %}" alt="imgArr[]" width="42px" height="52px" />
+                            <img class="symbol-img" src="{% static 'assets/img/symbol/eth.png' %}" alt="imgArr[]" width="50px" height="50px" />
                           </div>
                       </div>
                       <div class="col-3 title-symbol-name">
@@ -474,9 +474,9 @@
                 </div>
                 <div class="tab-pane" id="xrp" role="tabpanel" aria-labelledby="nav-xrp-tab">
                     <div class="row border-bottom border-dark">
-                      <div class="col-2 text-center title-symbol-img" style="margin-right: 10px">
+                      <div class="col-2 text-center title-symbol-img">
                           <div class = 'symbol-border'>
-                            <img class="symbol-img" src="{% static 'assets/img/symbol/xrp.png' %}" alt="imgArr[]" width="42px" height="52px" />
+                            <img class="symbol-img" src="{% static 'assets/img/symbol/xrp.png' %}" alt="imgArr[]" width="50px" height="50px" />
                           </div>
                       </div>
                       <div class="col-3 title-symbol-name">
@@ -670,7 +670,7 @@
                   <button class="nav-link active btn-block" id="bit" data-bs-toggle="pill" data-bs-target="#bit" type="button" role="tab" aria-controls="v-pills-bit" aria-selected="true">
                       <div class="row">
                           <div class="col-2">
-                              <img class="valued-assets-symbol-img" src="{% static 'assets/img/symbol/bit.png' %}" alt="imgArr[]" width="42px" height="52px"/>
+                              <img class="valued-assets-symbol-img" src="{% static 'assets/img/symbol/bit.png' %}" alt="imgArr[]" width="50px" height="50px"/>
                           </div>
                           <div class="col">
                               <div class="row rank_symbol_row">
@@ -690,7 +690,7 @@
                   <button class="nav-link btn-block" id="eth" data-bs-toggle="pill" data-bs-target="#eth" type="button" role="tab" aria-controls="v-pills-bit" aria-selected="true">
                       <div class="row">
                           <div class="col-2">
-                              <img class="valued-assets-symbol-img" src="{% static 'assets/img/symbol/eth.png' %}" alt="imgArr[]" width="42px" height="52px"/>
+                              <img class="valued-assets-symbol-img" src="{% static 'assets/img/symbol/eth.png' %}" alt="imgArr[]" width="50px" height="50px"/>
                           </div>
                           <div class="col">
                               <div class="row rank_symbol_row">
@@ -710,7 +710,7 @@
                   <button class="nav-link btn-block" id="xrp" data-bs-toggle="pill" data-bs-target="#xrp" type="button" role="tab" aria-controls="v-pills-bit" aria-selected="true">
                       <div class="row">
                           <div class="col-2">
-                              <img class="valued-assets-symbol-img" src="{% static 'assets/img/symbol/xrp.png' %}" alt="imgArr[]" width="42px" height="52px"/>
+                              <img class="valued-assets-symbol-img" src="{% static 'assets/img/symbol/xrp.png' %}" alt="imgArr[]" width="50px" height="50px"/>
                           </div>
                           <div class="col">
                               <div class="row rank_symbol_row">
@@ -923,34 +923,6 @@ type: 'radar',
 {#      }#}
 {#    }#}
 {#  }#}
-
-var chart = new Chart(document.getElementById('myChart2').getContext('2d'), {
-  type: 'doughnut',
-  data: {
-      labels: [
-        "Red",
-        "Blue"
-      ],
-  datasets: [
-    {
-      data: [50, 50],
-      backgroundColor: [
-        "#646EFF",
-        "#36A2EB",
-      ],
-      hoverBackgroundColor: [
-        "#646EFF",
-        "#36A2EB",
-      ]
-    }]
-    },
-  options: {
-    responsive: true,
-    legend: {
-      display: false
-    }
-  }
-});
 
 
 </script>

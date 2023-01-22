@@ -82,15 +82,16 @@
     }
 
 .title-symbol-name {
-       display: flex;
+    display: flex;
     align-items: center;
     justify-content: flex-start;
+    width:100px;
 }
 
 .title-symbol-img {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 /*.market-info-div {

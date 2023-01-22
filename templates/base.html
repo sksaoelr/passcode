@@ -32,13 +32,16 @@
 {% block content %}
 {% endblock %}
 <!-- Footer-->
-<footer class="footer py-4">
+<footer class="footer py-4" style="margin:-10px">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-4 text-lg-start">Copyright © Passcode. All rights reserved.</div>
-            <div class="col-lg-4 text-lg-start">주식회사 더블크라운</div>
-            <div class="col-lg-4 text-lg-start">사업자등록번호:774-87-02658</div>
-            <div class="col-lg-4 text-lg-start">contact@passcode.or.kr</div>
+            <div class="col-lg-3 text-lg-start">
+                <a class="navbar-brand" href="/"><img src="{% static 'assets/img/footer_logo.png' %}" alt="..." style="margin:10px" width="155" height="32"/></a>
+            </div>
+            <div class="col-lg-3 text-lg-start">Copyright © Passcode. All rights reserved.</div>
+            <div class="col-lg-3 text-lg-start">주식회사 더블크라운 <br>사업자등록번호:774-87-02658</div>
+<!--            <div class="col-lg-2 text-lg-start"></div>-->
+            <div class="col-lg-3 text-lg-start">contact@passcode.or.kr</div>
         </div>
     </div>
 </footer>
