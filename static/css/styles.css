@@ -11416,14 +11416,27 @@ p {
     margin-right: 0;
   }
 }
-header.sub_masthead,
+
 header.masthead {
   padding-top: 10.5rem;
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;
-  background-image: url("../assets/img/test.jpeg");
-  /*background-image: url("../assets/img/header-bg.jpg");*/
+  background-image: url("../assets/img/main_test.jpg");
+/*  background-image: url("../assets/img/header-bg.jpg");*/
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+}
+
+header.sub_masthead {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  text-align: center;
+  color: #fff;
+  background-image: url("../assets/img/main_test.jpg");
+/*  background-image: url("../assets/img/header-bg.jpg");*/
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -11516,6 +11529,7 @@ header.masthead .masthead-heading {
   background-color: #fff;
 }
 #portfolio .portfolio-item .portfolio-caption .portfolio-caption-heading {
+  color: black;
   font-size: 1.5rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
