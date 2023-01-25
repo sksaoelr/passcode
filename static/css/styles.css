@@ -11422,7 +11422,7 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;
-  background-image: url("../assets/img/main_test.jpg");
+  background-image: url("../assets/img/main.jpg");
 /*  background-image: url("../assets/img/header-bg.jpg");*/
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -11435,7 +11435,7 @@ header.sub_masthead {
   padding-bottom: 5rem;
   text-align: center;
   color: #fff;
-  background-image: url("../assets/img/main_test.jpg");
+  background-image: url("../assets/img/main.jpg");
 /*  background-image: url("../assets/img/header-bg.jpg");*/
   background-repeat: no-repeat;
   background-attachment: scroll;

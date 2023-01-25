@@ -153,6 +153,11 @@
 }
 
 
+.service_info_content {
+    font-family: italic bolder sans-serif;
+    color:gray;
+}
+
 /*.symbol-border {*/
 /*    box-sizing: border-box;*/
 /*    padding: 12px;*/
