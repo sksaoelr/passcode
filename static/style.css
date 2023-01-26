@@ -158,6 +158,12 @@
     color:gray;
 }
 
+@media all and (max-width: 768px){
+    .service_info_content img{
+        margin: -20%;
+    }
+}
+
 /*.symbol-border {*/
 /*    box-sizing: border-box;*/
 /*    padding: 12px;*/
