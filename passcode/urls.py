@@ -12,6 +12,8 @@ urlpatterns = [
          base_views.detail, name='detail'),
 
     # main 관련
+    path('index/',
+         category_veiws.index, name='index'),
     # About PASSCODE
     path('company_info/',
          category_veiws.company_info, name='company_info'),

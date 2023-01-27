@@ -11,6 +11,11 @@ import logging
 import datetime
 logger = logging.getLogger('category')
 
+# 메인페이지 이동하기위한 veiws
+def index(request):
+
+    return render(request, 'passcode/index.html')
+
 def company_info(request):
 
     return render(request, 'passcode/company_info.html')

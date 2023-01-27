@@ -153,16 +153,130 @@
 }
 
 
-.service_info_content {
-    font-family: italic bolder sans-serif;
-    color:gray;
+@media all and (min-width:768px) and (max-width:1199px) {
+      .main_content hr{
+        width: 10%;
+    }
+}
+
+@media all and (min-width: 1200px) {
+    .customer_content img{
+    margin-top: 45%;
+    }
+    .customer_title img{
+        margin-bottom: 5%;
+    }
+    .corporate_footer {
+    padding: 15%;
+    margin-top: -15%;
+    margin-bottom: -15%;
+    }
+    .main_content p{
+        font-size: 15px;
+    }
+    .main_content hr{
+        width: 10%;
+    }
 }
 
 @media all and (max-width: 768px){
-    .service_info_content img{
-        margin: -20%;
+    .customer_content img{
+        padding: 12%;
+    }
+    .corporate_footer {
+    /*padding: -15%;*/
+    /*margin-top: 25%;*/
+    /*margin-bottom: 15%;*/
+    }
+    .main_content p{
+        font-size: 12px;
+    }
+    .main_content hr{
+        width: 23%;
+        margin-left: 35%;
+    }
+
+}
+
+@keyframes tipsy {
+  0% {
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%) rotate(360deg);
+  }
+}
+
+body .start_page{
+  font-family: helvetica, arial, sans-serif;
+  background-color: #2e2e31;
+}
+
+.start_page a {
+  color: #1e2125;
+  text-shadow: 0 20px 25px #2e2e31, 0 40px 60px #2e2e31;
+  font-size: 100px;
+  font-weight: bold;
+  text-decoration: none;
+  letter-spacing: -3px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.start_page a:before,
+.start_page a:after {
+  content: '';
+  padding: .9em .4em;
+  position: absolute;
+  left: 50%;
+  width: 100%;
+  top: 50%;
+  display: block;
+  border: 15px solid red;
+  transform: translateX(-50%) translateY(-50%) rotate(0deg);
+  animation: 5s infinite alternate ease-in-out tipsy;
+}
+
+.start_page a:before {
+  border-color: #d9524a #d9524a rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+  z-index: -1;
+}
+
+.start_page a:after {
+  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #d9524a #d9524a;
+  box-shadow: 25px 25px 25px rgba(46, 46, 49, .8);
+}
+
+.serivce_info,
+.main_content,
+.main_img {
+margin:0 auto;
+animation: fadein 5s ease 3s;
+  -webkit-animation: fadein 3s; /* Safari and Chrome */
+}
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
+
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+
 
 /*.symbol-border {*/
 /*    box-sizing: border-box;*/

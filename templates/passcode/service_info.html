@@ -3,14 +3,14 @@
 {% block content %}
 
 <!-- Services-->
-<header class="sub_masthead">
+<header class="service_masthead">
 <section class="page-section" id="services">
     <div class="text-center category-title">
         <h2 class="section-heading text-uppercase" style="color: white;">Services Info</h2>
         <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
     </div>
     <div class="container" style="background-color: rgb(10 10 10 / 50%);">
-        <div class="row text-center">
+        <div class="row text-center serivce_info">
            <!-- <hr width="100px" size="5%" style="color:red;">-->
             <!--<h4 style="padding-bottom: 10px">Corporate Business</h4>-->
 {#            <div class="col-md-12"><img class="img-fluid" src="{% static 'assets/img/service_info/corporate_business_title.png' %}" width="30%" alt="..." style="margin-top: -15%;"/></div>#}
@@ -23,33 +23,21 @@
 {#                   실제 크립토 산업 Player들의 공정하며 엄격한 분석을 통한 평가로 객곽적인 검토를 진행 합니다#}
 {#                </p>#}
 {#            </div>#}
-            <div class="col-md-12">
-                <img class="img-fluid" src="{% static 'assets/img/service_info/coperate.png' %}" alt="..."/>
+            <div class="col-md-12 corporate_business">
+                <img class="img-fluid" src="{% static 'assets/img/service_info/corporate_business.png' %}" alt="..."/>
             </div>
-{#            <div class="col-md-12">#}
-{#                <img class="img-fluid" src="{% static 'assets/img/service_info/customer_Business_test.png' %}" alt="..."/>#}
-{#            </div>#}
-            <div class="col-md-12">
-                <img class="img-fluid" src="{% static 'assets/img/service_info/customer_title.png' %}" alt="..." style="margin-top: 15%;"/>
+            <div class="col-md-12 corporate_footer">
+                <img class="img-fluid" style="width: 80%" src="{% static 'assets/img/service_info/corporate_footer.png' %}" alt="..."/>
             </div>
-            <div class="row">
-                <div class="col-md-6 service_info_content">
-    {#            <div class = "col-md-6">#}
-                   <img class="img-fluid" src="{% static 'assets/img/service_info/customer_content.png' %}" alt="..."/>
-    {#                <div>#}
-    {#                <p>#}
-    {#                   <span style="font-weight:bold">#}
-    {#                   PASSCODE는 디지털자산 시장 내 공정한 가치평가 및 정보를 제공합니다#}
-    {#                   </span>#}
-    {#                   <br>#}
-    {#                   건전한 거래질서 및 안심거래 환경 조성으로 이용자들의 권익보호와<br>#}
-    {#                   디지털자산 산업의 성장을 함께합니다#}
-    {#                </p>#}
-    {#                </div>#}
-    {#            </div>#}
+            <div class="col-md-12 customer_title">
+                <img class="img-fluid" src="{% static 'assets/img/service_info/customer_business_title.png' %}" alt="..." style="margin-top: 15%;"/>
+            </div>
+            <div class="row" style="margin: 2px">
+                <div class="col-md-6 customer_content">
+                   <img class="img-fluid" style="width: 80%"  src="{% static 'assets/img/service_info/customer_content.png' %}" alt="..."/>
                 </div>
-                <div class="col-md-6">
-                      <img class="img-fluid" src="{% static 'assets/img/service_info/customer_business_2.png' %}" alt="..." style="margin-top: -20%; margin-bottom: -10%;"/>
+                <div class="col-md-6 customer_content">
+                      <img class="img-fluid" src="{% static 'assets/img/service_info/customer_business.png' %}" alt="..." style="margin-top: -20%; margin-bottom: -10%;"/>
                 </div>
             </div>
         </div>
