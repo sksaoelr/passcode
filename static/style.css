@@ -152,6 +152,11 @@
     transform: rotate(180deg);
 }
 
+.coin_info p,
+.coin_info h3{
+    color: #58667e
+}
+
 
 @media all and (min-width:768px) and (max-width:1199px) {
       .main_content hr{
