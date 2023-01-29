@@ -26,7 +26,8 @@ def index(request):
 
 def main(request):
 
-    return render(request, 'start_page.html')
+    return render(request, 'passcode/index.html')
+    # return render(request, 'start_page.html')
 
 
 def detail(request, question_id):
