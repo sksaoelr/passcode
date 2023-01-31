@@ -157,9 +157,10 @@
     color: #58667e
 }
 
-/*html {*/
-/*    overflow-x: hidden;*/
-/*}*/
+html {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
 
 @media all and (min-width:768px) and (max-width:1199px) {
       .main_content hr{
