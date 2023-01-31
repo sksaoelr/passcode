@@ -11304,9 +11304,12 @@ html {
 }
 
 body {
-  position: relative;
+  /*position: relative;*/
+  /*overflow-x: hidden;*/
   overflow-x: hidden;
+  /*overflow-y: scroll;*/
 }
+
 
 p {
   line-height: 1.75;
