@@ -184,6 +184,10 @@
 }
 
 @media all and (max-width: 768px){
+    body {
+        max-width: 97%;
+        overflow-x:hidden;
+    }
     .customer_content img{
         padding: 12%;
     }
