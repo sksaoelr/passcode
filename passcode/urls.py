@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import base_views, question_views, answer_views, category_veiws
+from .views import base_views, question_views, answer_views, category_veiws, notice_views
 
 app_name = 'passcode'
 
@@ -8,8 +8,8 @@ urlpatterns = [
     # base_views.py
     path('',
          base_views.index, name='index'),
-    path('<int:question_id>/',
-         base_views.detail, name='detail'),
+    # path('<int:question_id>/',
+    #      base_views.detail, name='detail'),
 
     # main 관련
     path('index/',
@@ -25,17 +25,15 @@ urlpatterns = [
     path('cryptocurrency_info/',
          category_veiws.cryptocurrency_info, name='cryptocurrency_info'),
 
-    # path('cryptocurrency_info/<str:symbol>',
-    #      category_veiws.cryptocurrency_info, name='cryptocurrency_info')
-
     path('ntf_info/',
          category_veiws.nft_info, name='nft_info'),
-    # path('temp/',
-    #      category_veiws.temp, name='temp'),
 
-    # Announce
-    path('notice_board/',
-         category_veiws.notice_board, name='notice_board'),
+    # 공지사항
+    path('notice_list/',
+         notice_views.notice_list, name='notice_list'),
+    path('notice/<int:notice_id>/', notice_views.notice_detail, name='notice_detail'),
+
+    # 뉴스
     path('news_board/',
          category_veiws.news_board, name='news_board'),
     # Contact Us

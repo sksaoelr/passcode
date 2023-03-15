@@ -23,13 +23,13 @@
           {% if news_list %}
           {% for news in news_list%}
             <tr>
-            <td style="text-align: center">
+            <td class="board_num" style="text-align: center">
                 <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
                 {{ news_list.paginator.count|sub:news_list.start_index|sub:forloop.counter0|add:1 }}
             </td>
               <td class="border-end border-start"><a href="https://www.cryptohub.or.kr/news/{{ news.id }}">{{ news.title }}</a></td>
 {#                <td class="border-end border-start"><span class="text-nowrap">{{ news.title }}</span></td>#}
-              <td style="text-align: center;margin: 10px">{{ news.pubdate }}</td>
+              <td class="cur_date" style="text-align: center;margin: 10px">{{ news.pubdate }}</td>
             </tr>
           {% endfor %}
           {% endif %}

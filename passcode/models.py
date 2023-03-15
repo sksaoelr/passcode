@@ -19,3 +19,21 @@ class Answer(models.Model):
     modify_date = models.DateTimeField(null=True, blank=True)
     create_date = models.DateTimeField()
     voter = models.ManyToManyField(User, related_name='voter_answer')
+
+class Notice(models.Model):
+    subject = models.CharField(max_length=200)
+    content = models.TextField()
+    create_date = models.DateTimeField()
+
+    def __str__(self):
+        return self.subject
+
+
+class images(models.Model):
+    title = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+    images = models.ImageField(blank=True, upload_to="images", null=True)
+
+    def __str__(self):
+        return self.title
+

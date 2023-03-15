@@ -113,9 +113,9 @@ def cryptocurrency_info(request):
     # }
     return render(request, 'passcode/cryptocurrency_info.html', context)
 
-def notice_board(request):
-
-    return render(request, 'passcode/notice_board.html')
+# def notice_list(request):
+#
+#     return render(request, 'passcode/`notice`_list.html')
 
 def news_board(request):
     page = request.GET.get('page', '1')  # 페이지

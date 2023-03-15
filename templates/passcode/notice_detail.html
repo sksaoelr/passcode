@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Services-->
+<header class="notice_masthead">
+<section class="page-section" id="notice_detail">
+{#<H1 class="text-center"><a href="{% url 'passcode:notice_board' %}" style="color: white">Notice</a></H1>#}
+    <div class="text-center category-title">
+        <h3 class="section-heading text-uppercase" style="color:white">Notice</h3>
+        <h3 class="section-subheading text-muted">Notice border</h3>
+    </div>
+    <div class="notice_detail" style="background-color: white">
+      <div class="row">
+          <h1></h1>
+          <h1></h1>
+      </div>
+        <div style="margin: 10px">
+            <h1>{{ notice_detail.subject }}</h1>
+        </div>
+        <div style="padding: 5%">
+            {{ notice_detail.content|linebreaksbr }}
+        </div>
+   </div>
+</section>
+</header>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="{% static 'js/scripts.js' %}"></script>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+{% endblock %}
