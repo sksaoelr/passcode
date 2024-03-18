@@ -28,7 +28,6 @@
                 {{ news_list.paginator.count|sub:news_list.start_index|sub:forloop.counter0|add:1 }}
             </td>
               <td class="border-end border-start"><a href="https://www.cryptohub.or.kr/news/{{ news.id }}">{{ news.title }}</a></td>
-{#                <td class="border-end border-start"><span class="text-nowrap">{{ news.title }}</span></td>#}
               <td class="cur_date" style="text-align: center;margin: 10px">{{ news.pubdate }}</td>
             </tr>
           {% endfor %}

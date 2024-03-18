@@ -67,11 +67,9 @@ def temp(request):
     context = {'test': "test"}
     return render(request, 'passcode/temp.html', context)
 
+# 코인 정보 API
 def cryptocurrency_info(request):
-    #
-    # if request.method == 'GET':
-    #     symbol = request.GET['symbol']
-    #     print(symbol)
+
     url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP&tsyms=USD'
     headers = {
         'Apikey': '05770f67db120460076177af39481e38fe5b46a77563fa33dce00f7c8c469e4d'
@@ -82,11 +80,6 @@ def cryptocurrency_info(request):
 
     response = session.get(url)
     data = json.loads(response.text)
-    # print(data['DISPLAY']['BTC']['USD']['PRICE'])
-    # market_info = []
-    # print(data['DISPLAY']['BTC']['USD'])
-    # for in_data in data['DISPLAY']['BTC']['USD']:
-    #     print(in_data)
     bit_data = data['DISPLAY']['BTC']['USD']
     eth_data = data['DISPLAY']['ETH']['USD']
     xrp_data = data['DISPLAY']['XRP']['USD']
@@ -101,30 +94,19 @@ def cryptocurrency_info(request):
         'xrp_volume_change_24h': xrp_data['VOLUME24HOURTO'],
         'xrp_market_cap': xrp_data['MKTCAP']
     }
-    # market_info.append(temp_data)
+
     context = {'market_info': market_info}
-    # if request.method == 'GET':
-    #     symbol = request.GET.get('symbol')
-    #     context['symbol'] = symbol
-    #     print(context)
-    # context = {
-    #     'symbol' : 'BTC',
-    #     'symbol_code': 'BINANCE:BTCUSDT|12M'
-    # }
+
     return render(request, 'passcode/cryptocurrency_info.html', context)
 
-# def notice_list(request):
-#
-#     return render(request, 'passcode/`notice`_list.html')
-
+# 뉴스 API
 def news_board(request):
-    page = request.GET.get('page', '1')  # 페이지
+    page = request.GET.get('page', '1')
     param = {
         'token' : '$2y$10$z0PDxiNJeRYH6u32sCbkT.ZgdyVsp/VvHHjYsruMwPs8CYXfOAgSW',
         'limit' : 20
     }
     url = f"https://www.cryptohub.or.kr/api/v1/news"
-    # headers = {"Authorization": "Bearer m4om9xjkcb1u0dyqkdgcqolsfdbcgu7yygfxhl6vcqwmd5imeh"}
     response = requests.post(url, param)
     in_data = json.loads(response.content.decode('utf-8'))
     result = []
@@ -141,7 +123,7 @@ def news_board(request):
         }
         result.append(temp_data)
 
-    paginator = Paginator(result, 9)  # 페이지당 10개씩 보여주기
+    paginator = Paginator(result, 9)
     page_obj = paginator.get_page(page)
     context = {'news_list': page_obj}
 
